@@ -9,6 +9,7 @@ AI Skills for building qubi Agentic Flows workflows. Each skill teaches an AI ag
 | **workflow-builder** | Generate workflow JSON from plain English prompts |
 | **document-to-workflow** | Read PDDs, SDDs, BRDs, process docs → generate workflow JSON |
 | **workflow-optimizer** | Analyze and improve existing workflows |
+| **qubi-cli** | Complete CLI reference — auth, workflow lifecycle, agents, RPA, skills management |
 
 ## How Skills Work
 
