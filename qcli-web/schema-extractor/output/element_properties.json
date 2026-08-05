@@ -1,0 +1,131 @@
+{
+  "Start": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "Start" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" }
+    ]
+  },
+  "End": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "End" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" }
+    ]
+  },
+  "Agent": {
+    "sections": ["Node Details", "Input Source", "Save Output As", "Agents"],
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "Agent", "section": "Node Details" },
+      { "label": "Description", "type": "text", "required": false, "section": "Node Details" },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"], "section": "Input Source" },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}", "section": "Save Output As" },
+      { "label": "Select Agent", "type": "select", "required": true, "section": "Agents" },
+      { "label": "System Prompt", "type": "text", "required": false, "section": "Agents" },
+      { "label": "User Prompt", "type": "text", "required": false, "section": "Agents" }
+    ]
+  },
+  "Assign": {
+    "sections": ["Node Details", "Assignments"],
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "Assign", "section": "Node Details" },
+      { "label": "Description", "type": "text", "required": false, "section": "Node Details" },
+      { "label": "Assignments", "type": "dynamic-list", "required": false, "section": "Assignments", "description": "ADD ASSIGNMENT button to add key-value pairs" }
+    ]
+  },
+  "Branch": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "Branch" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" }
+    ]
+  },
+  "Code": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "Code" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" },
+      { "label": "Language", "type": "select", "required": true, "options": ["JavaScript", "Python"] },
+      { "label": "Code", "type": "textarea", "required": true, "description": "Code editor area" }
+    ]
+  },
+  "DocumentAI": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "DocumentAI" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" },
+      { "label": "Operation", "type": "select", "required": true },
+      { "label": "File Variable", "type": "text", "required": false, "placeholder": "filePath" },
+      { "label": "Save Output As", "type": "text", "required": false, "placeholder": "documentAi_result" }
+    ]
+  },
+  "HTTP": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "Http" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" },
+      { "label": "Method", "type": "select", "required": true, "options": ["GET", "POST", "PUT", "DELETE", "PATCH"] },
+      { "label": "URL", "type": "text", "required": true, "placeholder": "https://api.example.com/users/{{userId}}" }
+    ]
+  },
+  "RPA": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "RPA" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" },
+      { "label": "Automation", "type": "select", "required": true, "description": "Select from available RPA automations" }
+    ]
+  },
+  "Human In The Loop": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "Hitl" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" }
+    ],
+    "description": "Container node that holds HITL Task nodes inside it"
+  },
+  "HITL Task": {
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "HitlTask" },
+      { "label": "Description", "type": "text", "required": false },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"] },
+      { "label": "Save output as variable", "type": "text", "required": false, "placeholder": "{{variable}}" },
+      { "label": "Task Name", "type": "text", "required": true },
+      { "label": "Task Type", "type": "select", "required": true },
+      { "label": "Template", "type": "select", "required": false },
+      { "label": "Assign To", "type": "select", "required": true }
+    ]
+  },
+  "JsonParser": {
+    "sections": ["Node Details", "Input Source", "JSON Path Mappings"],
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "JsonParser", "section": "Node Details" },
+      { "label": "Description", "type": "text", "required": false, "section": "Node Details" },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"], "section": "Input Source" },
+      { "label": "JSON Path Mappings", "type": "dynamic-list", "required": false, "section": "JSON Path Mappings", "description": "ADD MAPPING button to add JSON path → variable mappings" }
+    ]
+  },
+  "TextParser": {
+    "sections": ["Node Details", "Input Source", "Text Pattern", "Output Mappings"],
+    "fields": [
+      { "label": "Name", "type": "text", "required": true, "default": "TextParser", "section": "Node Details" },
+      { "label": "Description", "type": "text", "required": false, "section": "Node Details" },
+      { "label": "Input Source", "type": "select", "required": false, "options": ["Previous node output"], "section": "Input Source" },
+      { "label": "Regex Pattern", "type": "text", "required": true, "section": "Text Pattern" },
+      { "label": "Ignore Case", "type": "checkbox", "required": false, "default": false, "section": "Text Pattern" },
+      { "label": "Multiline", "type": "checkbox", "required": false, "default": false, "section": "Text Pattern" },
+      { "label": "Singleline (Dot matches newline)", "type": "checkbox", "required": false, "default": false, "section": "Text Pattern" },
+      { "label": "Trim Output", "type": "checkbox", "required": false, "default": false, "section": "Text Pattern" },
+      { "label": "Fallback Value (optional)", "type": "text", "required": false, "section": "Text Pattern" },
+      { "label": "Output Mappings", "type": "dynamic-list", "required": false, "section": "Output Mappings", "description": "ADD MAPPING button to define output variable mappings" }
+    ]
+  }
+}

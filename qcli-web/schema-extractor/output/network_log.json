@@ -1,0 +1,284 @@
+[
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/login",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/media/ce62453a442c7f35-s.p.0333ktddfbsxy.woff2",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/logo-default-dark.png",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0i.4--eyrll9i.css",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0l6k0g157yj8m.css",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0gffuosf-y4k8.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0yu_1~b4-6wf1.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0pvopy6o48m6w.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0yi.jbuvv9qt1.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/turbopack-0hp80d7viwnfj.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0tgjhnand~-7v.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/14vl2bouigjvo.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/_next/static/chunks/0.xldnnzze8be.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@200;300;400;500;600&display=swap",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@200;300;400;500;600&display=swap",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:wght@200;300;400;500;600&display=swap",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/login",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/favicon.ico?favicon.0x3dzn~oxb6tn.ico",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/connect/authorize?client_id=AgentHub&redirect_uri=https%3A%2F%2Ftest.agenthub.qubi.com%2Fapi%2Fcallback%2Flogin%2Flocal&response_type=code&scope=openid%20email%20profile%20roles%20api&nonce=hj88eUjAwsJlJx6w8J4BuSb8Q--sXIp0yHlUvlR02Xo&code_challenge=ZkN6yfBXNI58XAEcGzrxu3grygCUP9_W2gV_4UA_dxs&code_challenge_method=S256&state=LK5kL4HBMokJrtUeu4OCRiDYTQdt8NGHfynGC2_hIv4",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/Account/Login?ReturnUrl=%2Fconnect%2Fauthorize%3Fclient_id%3DAgentHub%26redirect_uri%3Dhttps%253A%252F%252Ftest.agenthub.qubi.com%252Fapi%252Fcallback%252Flogin%252Flocal%26response_type%3Dcode%26scope%3Dopenid%2520email%2520profile%2520roles%2520api%26nonce%3Dhj88eUjAwsJlJx6w8J4BuSb8Q--sXIp0yHlUvlR02Xo%26code_challenge%3DZkN6yfBXNI58XAEcGzrxu3grygCUP9_W2gV_4UA_dxs%26code_challenge_method%3DS256%26state%3DLK5kL4HBMokJrtUeu4OCRiDYTQdt8NGHfynGC2_hIv4%26prompt%3D",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/bootstrap/bootstrap.min.css",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/app.css",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/Automatiga.IdentityServer.styles.css",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_content/MudBlazor/MudBlazor.min.css",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/logo-default-light.png",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/logo-default-dark.png",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_content/MudBlazor/MudBlazor.min.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_framework/blazor.web.js",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor/initializers",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/_blazor/negotiate?negotiateVersion=1",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834053",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834131",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA",
+    "hasBody": true,
+    "bodySize": 38
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834212",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA",
+    "hasBody": true,
+    "bodySize": 1730
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834296",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA",
+    "hasBody": true,
+    "bodySize": 2995
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834371",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834453",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA",
+    "hasBody": true,
+    "bodySize": 52
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834530",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA",
+    "hasBody": true,
+    "bodySize": 83
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/favicon_new.png",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "GET",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA&_=1785313834604",
+    "hasBody": false,
+    "bodySize": 0
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/_blazor?id=Ph6aq_f68IlsBknE24zBJA",
+    "hasBody": true,
+    "bodySize": 155
+  }
+]

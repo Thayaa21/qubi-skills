@@ -1,0 +1,52 @@
+[
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/login",
+    "status": 302
+  },
+  {
+    "method": "POST",
+    "url": "https://test.identityserver.qubi.com/api/v1/account/login",
+    "status": 302
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/callback/login/local?code=G5PSWK9eA4mwRe7NPGHROf2hFbU-7Tvh-C4_8uF3C10&state=GEAoS8e9mtMGVzLFikzmziosN3J6_EHBdp7NFNnwoWg&iss=https%3A%2F%2Ftest.identityserver.qubi.com%2F",
+    "status": 302
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/v1/getdashboarddata",
+    "status": 200
+  },
+  {
+    "method": "POST",
+    "url": "https://test.agenthub.qubi.com/api/v1/workflow/search",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/v1/getworkflowversionlist?workflowId=89b4b46f-5bd2-4b1a-0420-08ded7cab1f3",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/v1/workflow/89b4b46f-5bd2-4b1a-0420-08ded7cab1f3/graph",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/v1/getallagents",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/v1/getworkflowvariablelist?workflowId=89b4b46f-5bd2-4b1a-0420-08ded7cab1f3",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "url": "https://test.agenthub.qubi.com/api/v1/getrpaautomations",
+    "status": 200
+  }
+]

@@ -1,0 +1,44 @@
+{
+  "nodes": [
+    {
+      "id": "f4ca28f9-caec-4dff-9f50-22488fdfff11",
+      "type": "Start",
+      "position": { "x": 250, "y": 200 },
+      "data": { "type": "Start", "name": "Start" }
+    },
+    {
+      "id": "9c162b3d-241a-4844-965a-4aa7610028d8",
+      "type": "Agent",
+      "position": { "x": 450, "y": 200 },
+      "data": {
+        "type": "Agent",
+        "name": "Quote Generator",
+        "agentId": "e9af665c-6bd1-4644-6333-08dee4aa9ecc",
+        "input": { "source": "payload", "sessionVarName": "", "literalValue": "" },
+        "systemPrompt": "Output a random quote",
+        "userMessage": "Output a random quote",
+        "saveOutputAs": "quoteResult"
+      }
+    },
+    {
+      "id": "fb806082-ba85-464d-bdf8-8a0bccc5195c",
+      "type": "End",
+      "position": { "x": 700, "y": 200 },
+      "data": { "type": "End", "name": "End" }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__f4ca28f9-caec-4dff-9f50-22488fdfff11-9c162b3d-241a-4844-965a-4aa7610028d8",
+      "source": "f4ca28f9-caec-4dff-9f50-22488fdfff11",
+      "target": "9c162b3d-241a-4844-965a-4aa7610028d8"
+    },
+    {
+      "id": "xy-edge__9c162b3d-241a-4844-965a-4aa7610028d8-fb806082-ba85-464d-bdf8-8a0bccc5195c",
+      "source": "9c162b3d-241a-4844-965a-4aa7610028d8",
+      "target": "fb806082-ba85-464d-bdf8-8a0bccc5195c"
+    }
+  ],
+  "viewport": { "x": 0, "y": 0, "zoom": 1 },
+  "executionMode": "Sequential"
+}
