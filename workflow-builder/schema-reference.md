@@ -160,11 +160,15 @@ The `input` variable is available in code and contains the previous node's outpu
 
 Document processing (OCR, extraction, classification).
 
+<!-- UV-DOCAI-01: `operation` is a required dropdown on the designer whose
+     option list was never captured. Do not invent a value ("extract" is
+     not confirmed) -- ask the human, or open the node in the designer. -->
+
 ```json
 {
   "type": "DocumentAI",
   "name": "DocumentAI",
-  "operation": "extract",
+  "operation": "UNVERIFIED",
   "fileVariable": "filePath",
   "saveOutputAs": "documentAi_result"
 }
@@ -242,12 +246,17 @@ Container that holds HitlTask nodes.
 
 Creates a task for a human to complete.
 
+<!-- UV-HITLTASK-01: `taskType` and `assignTo` are required dropdowns whose
+     option lists were never captured ("approval" below is not confirmed);
+     `template` is a tenant-specific dropdown too. Ask the human, or open the
+     node in the designer. -->
+
 ```json
 {
   "type": "HitlTask",
   "name": "HitlTask",
   "taskName": "Review Invoice",
-  "taskType": "approval",
+  "taskType": "UNVERIFIED",
   "template": "template-uuid",
   "assignTo": "user-or-group-id",
   "saveOutputAs": "hitlResult"

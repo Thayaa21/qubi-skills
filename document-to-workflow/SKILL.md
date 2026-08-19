@@ -71,8 +71,8 @@ A document-understanding skill that converts process documentation into executab
    - Each branch condition becomes a Branch node
    - Map each path to its downstream nodes
 5. **Identify unknowns:**
-   - If an Agent node is needed → ask human for `agentId` (from `qubi agents list`)
-   - If RPA is needed → ask human for `automationId` (from `qubi rpa list`)
+   - If an Agent node is needed → ask human for `agentId` (from `qcli agents list`)
+   - If RPA is needed → ask human for `automationId` (from `qcli rpa list`)
    - If specific URLs/endpoints aren't in the document → ask human
 
 ## Phase 3: Generate the Workflow JSON
@@ -116,7 +116,7 @@ Generate a complete workflow following these rules:
 ## Phase 4: Validate
 
 ```bash
-qubi flow validate <file.json>
+qcli flow validate <file.json>
 ```
 
 Fix any errors. Re-validate until clean.
@@ -135,7 +135,7 @@ Ask for confirmation before saving.
 ## Phase 6: Save
 
 ```bash
-qubi flow save <file.json> --workflow-id <id>
+qcli flow save <file.json> --workflow-id <id>
 ```
 
 ## Document Interpretation Rules

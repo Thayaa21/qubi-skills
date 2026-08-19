@@ -1,5 +1,5 @@
 ---
-name: qubi-agentic-flows
+name: workflow-builder
 description: "Generate, validate, and deploy qubi Agentic Flows (JSON graph format). Use when building a qubi web workflow; creating agentic flow graphs; validating workflow JSON; deploying to qubi AgentHub."
 ---
 
