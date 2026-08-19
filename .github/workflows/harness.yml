@@ -1,0 +1,41 @@
+name: skills-harness
+
+on:
+  push:
+    branches: [Rishi]
+  pull_request:
+    branches: [Rishi]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout qubi-skills
+        uses: actions/checkout@v4
+        with:
+          path: qubi-skills
+
+      - name: Checkout qcli-web (pinned)
+        uses: actions/checkout@v4
+        with:
+          repository: Thayaa21/qcli-web
+          ref: v0.3.0
+          path: qcli-web
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install the validator (editable)
+        run: pip install -e ./qcli-web
+
+      - name: Install test dependencies
+        run: pip install pytest
+
+      - name: Run the harness
+        working-directory: qubi-skills
+        run: python -m pytest -q
+
+      - name: Check UNVERIFIED.md is current
+        working-directory: qubi-skills
+        run: python tools/rollup_unverified.py --check
