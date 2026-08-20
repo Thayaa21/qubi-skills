@@ -1,0 +1,4 @@
+{
+  "detached_start.json": { "errors": [], "warnings": ["UNREACHABLE_NODE", "NO_PATH_TO_END"] },
+  "dangling_branch_leg.json": { "errors": [], "warnings": ["NO_PATH_TO_END"] }
+}

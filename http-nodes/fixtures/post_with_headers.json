@@ -1,0 +1,68 @@
+{
+  "nodes": [
+    {
+      "id": "96582dc6-6752-4d2e-865c-21445f27dd3f",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "dca88ec2-a2a9-4a7a-8ac9-c11d5f9beb4e",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Create Customer",
+        "method": "POST",
+        "url": "https://api.example.com/customers",
+        "headers": {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer {{apiKey}}"
+        },
+        "body": {
+          "name": "{{customerName}}"
+        },
+        "saveOutputAs": "customer"
+      }
+    },
+    {
+      "id": "66039fbc-56f0-4127-b420-4f0137231619",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__96582dc6-6752-4d2e-865c-21445f27dd3f-dca88ec2-a2a9-4a7a-8ac9-c11d5f9beb4e",
+      "source": "96582dc6-6752-4d2e-865c-21445f27dd3f",
+      "target": "dca88ec2-a2a9-4a7a-8ac9-c11d5f9beb4e"
+    },
+    {
+      "id": "xy-edge__dca88ec2-a2a9-4a7a-8ac9-c11d5f9beb4e-66039fbc-56f0-4127-b420-4f0137231619",
+      "source": "dca88ec2-a2a9-4a7a-8ac9-c11d5f9beb4e",
+      "target": "66039fbc-56f0-4127-b420-4f0137231619"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

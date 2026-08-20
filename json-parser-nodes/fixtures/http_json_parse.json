@@ -1,0 +1,91 @@
+{
+  "nodes": [
+    {
+      "id": "ef95ae65-58fa-4012-9fec-cf6531a0ec43",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "c1a0cf3a-e2f1-4bae-ae0a-dfde6d93fb40",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Users",
+        "method": "GET",
+        "url": "https://jsonplaceholder.typicode.com/users/1",
+        "saveOutputAs": "userRaw"
+      }
+    },
+    {
+      "id": "3808d8b8-f8f7-4fa4-91d3-49bb8420d743",
+      "type": "JsonParser",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "JsonParser",
+        "name": "Extract Name and Email",
+        "input": {
+          "source": "userRaw"
+        },
+        "mappings": [
+          {
+            "jsonPath": "$.name",
+            "variable": "userName"
+          },
+          {
+            "jsonPath": "$.email",
+            "variable": "userEmail"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c8b809f9-5649-4917-80b0-beebedd60393",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__ef95ae65-58fa-4012-9fec-cf6531a0ec43-c1a0cf3a-e2f1-4bae-ae0a-dfde6d93fb40",
+      "source": "ef95ae65-58fa-4012-9fec-cf6531a0ec43",
+      "target": "c1a0cf3a-e2f1-4bae-ae0a-dfde6d93fb40"
+    },
+    {
+      "id": "xy-edge__c1a0cf3a-e2f1-4bae-ae0a-dfde6d93fb40-3808d8b8-f8f7-4fa4-91d3-49bb8420d743",
+      "source": "c1a0cf3a-e2f1-4bae-ae0a-dfde6d93fb40",
+      "target": "3808d8b8-f8f7-4fa4-91d3-49bb8420d743"
+    },
+    {
+      "id": "xy-edge__3808d8b8-f8f7-4fa4-91d3-49bb8420d743-c8b809f9-5649-4917-80b0-beebedd60393",
+      "source": "3808d8b8-f8f7-4fa4-91d3-49bb8420d743",
+      "target": "c8b809f9-5649-4917-80b0-beebedd60393"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

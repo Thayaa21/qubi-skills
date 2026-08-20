@@ -1,0 +1,80 @@
+{
+  "nodes": [
+    {
+      "id": "b3ba7dc3-6537-424a-a95e-8a85294e1ba5",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "b4b4491a-e4a5-46fb-b87e-ff62d775a75b",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Pending Tasks",
+        "method": "GET",
+        "url": "https://api.example.com/pending-tasks",
+        "saveOutputAs": "tasks"
+      }
+    },
+    {
+      "id": "4a6029cf-ffbf-4a44-81a5-0c25e80f6235",
+      "type": "RPA",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "RPA",
+        "name": "Run Desktop Automation",
+        "automationId": "00000000-0000-0000-0000-000000000000",
+        "saveOutputAs": "rpaResult"
+      }
+    },
+    {
+      "id": "0128ee8f-13aa-4192-a04f-4a4f9d4374a7",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__b3ba7dc3-6537-424a-a95e-8a85294e1ba5-b4b4491a-e4a5-46fb-b87e-ff62d775a75b",
+      "source": "b3ba7dc3-6537-424a-a95e-8a85294e1ba5",
+      "target": "b4b4491a-e4a5-46fb-b87e-ff62d775a75b"
+    },
+    {
+      "id": "xy-edge__b4b4491a-e4a5-46fb-b87e-ff62d775a75b-4a6029cf-ffbf-4a44-81a5-0c25e80f6235",
+      "source": "b4b4491a-e4a5-46fb-b87e-ff62d775a75b",
+      "target": "4a6029cf-ffbf-4a44-81a5-0c25e80f6235"
+    },
+    {
+      "id": "xy-edge__4a6029cf-ffbf-4a44-81a5-0c25e80f6235-0128ee8f-13aa-4192-a04f-4a4f9d4374a7",
+      "source": "4a6029cf-ffbf-4a44-81a5-0c25e80f6235",
+      "target": "0128ee8f-13aa-4192-a04f-4a4f9d4374a7"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

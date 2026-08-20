@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "id": "e1517812-82dd-46bc-abdf-88caa54dd1af",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "ee698f72-2861-40af-8641-9623327deb54",
+      "type": "Assign",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Assign",
+        "name": "Set Config",
+        "assignments": [
+          {
+            "variable": "environment",
+            "value": "production"
+          },
+          {
+            "variable": "threshold",
+            "value": "100"
+          },
+          {
+            "variable": "endpoint",
+            "value": "https://api.example.com"
+          }
+        ]
+      }
+    },
+    {
+      "id": "6e4ff773-bd4d-4946-933f-59584c961f35",
+      "type": "Http",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Metrics",
+        "method": "GET",
+        "url": "{{endpoint}}/metrics",
+        "saveOutputAs": "metrics"
+      }
+    },
+    {
+      "id": "4c220c93-bf91-43dd-9ecc-25e21e71a67c",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__e1517812-82dd-46bc-abdf-88caa54dd1af-ee698f72-2861-40af-8641-9623327deb54",
+      "source": "e1517812-82dd-46bc-abdf-88caa54dd1af",
+      "target": "ee698f72-2861-40af-8641-9623327deb54"
+    },
+    {
+      "id": "xy-edge__ee698f72-2861-40af-8641-9623327deb54-6e4ff773-bd4d-4946-933f-59584c961f35",
+      "source": "ee698f72-2861-40af-8641-9623327deb54",
+      "target": "6e4ff773-bd4d-4946-933f-59584c961f35"
+    },
+    {
+      "id": "xy-edge__6e4ff773-bd4d-4946-933f-59584c961f35-4c220c93-bf91-43dd-9ecc-25e21e71a67c",
+      "source": "6e4ff773-bd4d-4946-933f-59584c961f35",
+      "target": "4c220c93-bf91-43dd-9ecc-25e21e71a67c"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

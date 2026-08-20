@@ -1,0 +1,4 @@
+{
+  "http_method_head.json": { "errors": ["INVALID_HTTP_METHOD"], "warnings": [] },
+  "http_method_not_string.json": { "errors": ["INVALID_HTTP_METHOD"], "warnings": [] }
+}

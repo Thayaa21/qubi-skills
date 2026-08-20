@@ -1,0 +1,25 @@
+{
+  "nodes": [
+    {
+      "id": "aa0d3c7c-cf01-4fbf-9f3c-13ef8c7909c9",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Only Node",
+        "method": "GET",
+        "url": "https://api.example.com"
+      }
+    }
+  ],
+  "edges": [],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "3e4529a0-01e1-4b26-9bb7-26bed8622ccc",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "4974bc0e-3e40-43c8-ae23-13b3dc84384a",
+      "type": "End",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__wrong-id",
+      "source": "3e4529a0-01e1-4b26-9bb7-26bed8622ccc",
+      "target": "4974bc0e-3e40-43c8-ae23-13b3dc84384a"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "cc079685-fba6-4b51-870f-51523c511e18",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "3362413e-e783-4c55-bf66-595b0589d324",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get User",
+        "method": "GET",
+        "url": "https://jsonplaceholder.typicode.com/users/1",
+        "saveOutputAs": "userRaw"
+      }
+    },
+    {
+      "id": "f6677b25-eb11-4b0c-a5cd-c69c7f2b8726",
+      "type": "JsonParser",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "JsonParser",
+        "name": "Extract Fields",
+        "mappings": [
+          {
+            "jsonPath": "$.name",
+            "variable": "userName"
+          }
+        ]
+      }
+    },
+    {
+      "id": "5c1bdbc7-13ca-477f-ae1f-73d9f06b5cba",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__cc079685-fba6-4b51-870f-51523c511e18-3362413e-e783-4c55-bf66-595b0589d324",
+      "source": "cc079685-fba6-4b51-870f-51523c511e18",
+      "target": "3362413e-e783-4c55-bf66-595b0589d324"
+    },
+    {
+      "id": "xy-edge__3362413e-e783-4c55-bf66-595b0589d324-f6677b25-eb11-4b0c-a5cd-c69c7f2b8726",
+      "source": "3362413e-e783-4c55-bf66-595b0589d324",
+      "target": "f6677b25-eb11-4b0c-a5cd-c69c7f2b8726"
+    },
+    {
+      "id": "xy-edge__f6677b25-eb11-4b0c-a5cd-c69c7f2b8726-5c1bdbc7-13ca-477f-ae1f-73d9f06b5cba",
+      "source": "f6677b25-eb11-4b0c-a5cd-c69c7f2b8726",
+      "target": "5c1bdbc7-13ca-477f-ae1f-73d9f06b5cba"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

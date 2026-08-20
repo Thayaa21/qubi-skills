@@ -1,46 +1,46 @@
 ---
 name: qubi-cli
-description: "Complete CLI reference for the qubi command-line tool. Auth, workflow lifecycle (validate/save/get/list/run), agent discovery, RPA discovery, skills management. Use when running any qubi command."
+description: "Complete CLI reference for the qcli command-line tool. Auth, workflow lifecycle (validate/save/get/list/run/use), agent discovery, RPA discovery. Use when running any qcli command."
 ---
 
 # qubi CLI
 
-> The complete command reference for the `qubi` CLI — authenticate, manage workflows, discover platform resources, and install skills.
+> The complete command reference for the `qcli` CLI — authenticate, manage workflows, and discover platform resources.
 
 ## When to invoke
 
-- User asks to run a qubi command
-- User needs to authenticate with qubi (`qubi login`)
+- User asks to run a qcli command
+- User needs to authenticate with qubi (`qcli login`)
 - User wants to list, get, save, validate, or run workflows
 - User wants to find available agents or RPA automations
-- User wants to install or manage qubi skills
 - User asks "how do I deploy to qubi" or "how do I push my workflow"
 
 ## Critical Rules
 
-1. **Always authenticate first** — `qubi login` must succeed before any platform command works
-2. **Always validate before saving** — run `qubi flow validate` before `qubi flow save`
-3. **Never use `-y` flags** — always let the human confirm destructive operations (save, run, uninstall)
-4. **Never invent IDs** — get `workflow-id` from `qubi flow list`, `agentId` from `qubi agents list`, `automationId` from `qubi rpa list`
+1. **Always authenticate first** — `qcli login` must succeed before any platform command works
+2. **Always validate before saving** — run `qcli flow validate` before `qcli flow save`
+3. **Never use `-y` flags** — always let the human confirm destructive operations (save, run)
+4. **Never invent IDs** — get `workflow-id` from `qcli flow list`, `agentId` from `qcli agents list`, `automationId` from `qcli rpa list`
 5. **Use `--json-output` for parsing** — when you need to extract data programmatically, use the `-j` flag
-6. **Check `qubi status` first** — if unsure whether the user is logged in, check before running platform commands
+6. **Check `qcli status` first** — if unsure whether the user is logged in, check before running platform commands
+7. **There is no `qcli flow create`** — a workflow must already exist on the platform (created in the web UI) before `qcli flow save` can push to it
 
 ## Quick Start
 
-1. Authenticate: `qubi login`
-2. List workflows: `qubi flow list`
-3. Select a workflow: `qubi flow use <number>`
-4. Download it: `qubi flow get <workflow-id> -o workflow.json --pretty`
+1. Authenticate: `qcli login`
+2. List workflows: `qcli flow list`
+3. Select a workflow: `qcli flow use <number>`
+4. Download it: `qcli flow get <workflow-id> -o workflow.json --pretty`
 5. Edit the JSON
-6. Validate: `qubi flow validate workflow.json`
-7. Save back: `qubi flow save workflow.json --workflow-id <id>`
-8. Run: `qubi flow run <workflow-id>`
+6. Validate: `qcli flow validate workflow.json`
+7. Save back: `qcli flow save workflow.json --workflow-id <id>`
+8. Run: `qcli flow run <workflow-id>`
 
 ## Command Reference
 
 ### Authentication
 
-#### `qubi login`
+#### `qcli login`
 
 Authenticate with the qubi platform. Uses automated browser login by default.
 
@@ -61,6 +61,10 @@ qubi login --server <url>   # Custom AgentHub URL
 Clear stored session credentials.
 
 ```bash
+qcli logout
+```
+
+#### `qcli status`
 qubi logout
 ```
 
@@ -69,6 +73,21 @@ qubi logout
 Show current login status (logged in / not logged in, which server).
 
 ```bash
+qcli status
+```
+
+---
+
+### Workflow Commands (`qcli flow`)
+
+#### `qcli flow list`
+
+List all workflows on the platform. Results are cached locally so `flow use` can reference them by number.
+
+```bash
+qcli flow list                    # show all workflows
+qcli flow list -s "invoice"       # search by name
+qcli flow list --json-output      # machine-readable JSON output
 qubi status
 ```
 
@@ -91,6 +110,23 @@ qubi flow list --json-output      # Machine-readable JSON output
 | `-s, --search TEXT` | Filter workflows by name |
 | `-j, --json-output` | Output as JSON |
 
+#### `qcli flow use <number>`
+
+Select a workflow from the last `qcli flow list` by its display number.
+
+```bash
+qcli flow use 3     # select workflow #3 from the list
+```
+
+#### `qcli flow get <workflow-id>`
+
+Download a workflow graph as JSON. By default this writes a file under `workflows/` (named from the cached workflow name, or the id) rather than printing — pass `-o -` for stdout.
+
+```bash
+qcli flow get abc123                            # auto-saves to workflows/<name>.json
+qcli flow get abc123 -o my-flow.json            # save to a specific file
+qcli flow get abc123 -o my-flow.json --pretty   # pretty-printed
+qcli flow get abc123 -o -                       # print to stdout, for piping
 #### `qubi flow use <number>`
 
 Select a workflow from the list by its display number. Useful after running `qubi flow list`.
@@ -269,53 +305,63 @@ qubi flow list       # See what's available
 
 ### Build and deploy a new workflow
 ```bash
-# 1. Create workflow JSON (use workflow-builder skill)
+# 1. Create workflow JSON (use the workflow-builder skill)
 # 2. Validate locally
-qubi flow validate my-flow.json
-# 3. Get the target workflow ID
-qubi flow list -s "my workflow"
+qcli flow validate my-flow.json
+# 3. Get the target workflow ID (must already exist on the platform)
+qcli flow list -s "my workflow"
 # 4. Push to platform
-qubi flow save my-flow.json --workflow-id <id>
+qcli flow save my-flow.json --workflow-id <id>
 # 5. Run it
-qubi flow run <id>
+qcli flow run <id>
 ```
 
 ### Download, edit, re-upload
 ```bash
-qubi flow list
-qubi flow get <id> -o flow.json --pretty
-# Edit flow.json...
-qubi flow validate flow.json
-qubi flow save flow.json --workflow-id <id>
+qcli flow list
+qcli flow get <id> -o flow.json --pretty
+# edit flow.json...
+qcli flow validate flow.json
+qcli flow save flow.json --workflow-id <id>
 ```
 
 ### Find platform resources
 ```bash
-qubi agents list -j    # Get agentId for Agent nodes
-qubi rpa list -j       # Get automationId for RPA nodes
+qcli agents list -j    # get agentId for Agent nodes
+qcli rpa list -j       # get automationId for RPA nodes
 ```
 
 ## Error Handling
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
-| "Not authenticated" | Session expired or never logged in | Run `qubi login` |
-| "Workflow not found" | Wrong workflow ID | Run `qubi flow list` to find correct ID |
-| "Validation failed" | Invalid workflow JSON | Run `qubi flow validate` and fix errors |
-| "Connection refused" | Wrong server or network issue | Check `qubi status`, try `qubi login --server <url>` |
-| "Permission denied" | Account lacks access | Contact platform admin |
+| "Not authenticated" | Session expired or never logged in | Run `qcli login` |
+| "Workflow not found" | Wrong workflow ID | Run `qcli flow list` to find the correct ID |
+| "Validation failed" | Invalid workflow JSON | Run `qcli flow validate` and fix errors |
+| Login times out or fails silently | Browser automation couldn't find/fill the form | Run `qcli login --headed` to see what's happening |
+| `--no-browser` login accepted but other commands 401 | Direct API login captures Identity Server cookies, not AgentHub cookies — a known limitation | Use the default browser login instead |
+| "Could not start the workflow" from `flow run` | Neither REST endpoint nor the SignalR hub could run it | The workflow may only be runnable from the web UI for now — this is a real platform limitation, not a bug to work around |
+| Connection issue | Wrong server or network issue | Check `qcli status`, try `qcli login --server <url>` |
+| Permission denied | Account lacks access | Contact platform admin |
+
+## Unverified
+
+| ID | Claim | Why unverifiable offline | How to verify | Status |
+|----|-------|--------------------------|----------------|--------|
+| UV-RUNTIME-02 | `qcli flow run` executes a workflow and returns a real job id | Both REST endpoints and the SignalR hub are unreachable offline | Run any saved workflow and confirm a job id comes back | open |
 
 ## Operating Rules
 
 **Always:**
-- Check `qubi status` if unsure about auth state
-- Use `qubi flow validate` before `qubi flow save`
+- Check `qcli status` if unsure about auth state
+- Use `qcli flow validate` before `qcli flow save`
 - Use `--json-output` when extracting data programmatically
 - Get IDs from list commands, never guess them
-- Ask human for confirmation before save/run/uninstall
+- Ask human for confirmation before save/run
 
 **Never:**
 - Use `-y` or `--yes` flags (bypasses human confirmation)
 - Use `--skip-validate` (risks pushing invalid workflows)
-- Assume workflow IDs — always discover from `qubi flow list`
+- Assume workflow IDs — always discover from `qcli flow list`
+- Assume a workflow can be created from the CLI — it must already exist on the platform
 - Run platform commands without checking auth first

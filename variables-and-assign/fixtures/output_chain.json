@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "id": "946517ff-dc2b-4b22-94a5-2228d3220928",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "f8556601-d5bd-4d11-abbf-4552e3b0c4a9",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get User",
+        "method": "GET",
+        "url": "https://api.example.com/users/1",
+        "saveOutputAs": "userRaw"
+      }
+    },
+    {
+      "id": "f8de5a2c-0f5f-47f8-8d21-c8ab960077ed",
+      "type": "Code",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Code",
+        "name": "Extract Name",
+        "language": "javascript",
+        "code": "return JSON.parse(input).name;",
+        "input": {
+          "source": "userRaw"
+        },
+        "saveOutputAs": "userName"
+      }
+    },
+    {
+      "id": "33d57598-8dc8-40b7-aaaa-31c6f617fa14",
+      "type": "Agent",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "Agent",
+        "name": "Draft Greeting",
+        "agentId": "00000000-0000-0000-0000-000000000000",
+        "userMessage": "Write a greeting for {{userName}}",
+        "saveOutputAs": "greeting"
+      }
+    },
+    {
+      "id": "57b94d2b-c41f-4719-a334-5b90451244a2",
+      "type": "End",
+      "position": {
+        "x": 740,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__946517ff-dc2b-4b22-94a5-2228d3220928-f8556601-d5bd-4d11-abbf-4552e3b0c4a9",
+      "source": "946517ff-dc2b-4b22-94a5-2228d3220928",
+      "target": "f8556601-d5bd-4d11-abbf-4552e3b0c4a9"
+    },
+    {
+      "id": "xy-edge__f8556601-d5bd-4d11-abbf-4552e3b0c4a9-f8de5a2c-0f5f-47f8-8d21-c8ab960077ed",
+      "source": "f8556601-d5bd-4d11-abbf-4552e3b0c4a9",
+      "target": "f8de5a2c-0f5f-47f8-8d21-c8ab960077ed"
+    },
+    {
+      "id": "xy-edge__f8de5a2c-0f5f-47f8-8d21-c8ab960077ed-33d57598-8dc8-40b7-aaaa-31c6f617fa14",
+      "source": "f8de5a2c-0f5f-47f8-8d21-c8ab960077ed",
+      "target": "33d57598-8dc8-40b7-aaaa-31c6f617fa14"
+    },
+    {
+      "id": "xy-edge__33d57598-8dc8-40b7-aaaa-31c6f617fa14-57b94d2b-c41f-4719-a334-5b90451244a2",
+      "source": "33d57598-8dc8-40b7-aaaa-31c6f617fa14",
+      "target": "57b94d2b-c41f-4719-a334-5b90451244a2"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

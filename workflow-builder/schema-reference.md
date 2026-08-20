@@ -16,13 +16,17 @@ Every node has this structure:
   "data": {
     "type": "NodeType",
     "name": "Display Name",
+    "description": "",
     "input": { "source": "payload", "sessionVarName": "", "literalValue": "" },
     "saveOutputAs": "variableName"
   }
 }
 ```
 
-The `input` and `saveOutputAs` fields are optional on all nodes.
+The `description`, `input`, and `saveOutputAs` fields are optional on all nodes.
+Any `data` key outside a type's documented required/optional fields (plus `type`
+and `description`) is treated as an unrecognised field — the validator will warn
+with `UNKNOWN_DATA_FIELD`, since it's almost always a typo of a real field name.
 
 **Input source options:** `"payload"` (previous node output), `"variable"`, `"literal"`
 
@@ -156,11 +160,15 @@ The `input` variable is available in code and contains the previous node's outpu
 
 Document processing (OCR, extraction, classification).
 
+<!-- UV-DOCAI-01: `operation` is a required dropdown on the designer whose
+     option list was never captured. Do not invent a value ("extract" is
+     not confirmed) -- ask the human, or open the node in the designer. -->
+
 ```json
 {
   "type": "DocumentAI",
   "name": "DocumentAI",
-  "operation": "extract",
+  "operation": "UNVERIFIED",
   "fileVariable": "filePath",
   "saveOutputAs": "documentAi_result"
 }
@@ -169,7 +177,7 @@ Document processing (OCR, extraction, classification).
 | Field | Required | Description |
 |-------|----------|-------------|
 | name | yes | Display name |
-| operation | yes | Operation type (from dropdown) |
+| operation | yes | Operation type — **platform dropdown select**, not free text. The exact option list wasn't captured; ask the human which operation before inventing a value |
 | fileVariable | no | Variable containing file path |
 | saveOutputAs | no | Variable to store result |
 
@@ -193,7 +201,7 @@ Makes HTTP API calls.
 | Field | Required | Description |
 |-------|----------|-------------|
 | name | yes | Display name |
-| method | yes | `GET`, `POST`, `PUT`, `DELETE`, `PATCH`, `HEAD`, `OPTIONS` |
+| method | yes | `GET`, `POST`, `PUT`, `DELETE`, `PATCH` — this is the platform's full dropdown list, no other values are valid |
 | url | yes | URL (supports `{{variable}}` interpolation) |
 | saveOutputAs | no | Variable to store response |
 
@@ -238,12 +246,17 @@ Container that holds HitlTask nodes.
 
 Creates a task for a human to complete.
 
+<!-- UV-HITLTASK-01: `taskType` and `assignTo` are required dropdowns whose
+     option lists were never captured ("approval" below is not confirmed);
+     `template` is a tenant-specific dropdown too. Ask the human, or open the
+     node in the designer. -->
+
 ```json
 {
   "type": "HitlTask",
   "name": "HitlTask",
   "taskName": "Review Invoice",
-  "taskType": "approval",
+  "taskType": "UNVERIFIED",
   "template": "template-uuid",
   "assignTo": "user-or-group-id",
   "saveOutputAs": "hitlResult"
@@ -254,9 +267,9 @@ Creates a task for a human to complete.
 |-------|----------|-------------|
 | name | yes | Display name |
 | taskName | yes | Human-readable task title |
-| taskType | yes | Task category (from dropdown) |
-| assignTo | yes | Who handles the task |
-| template | no | Form template ID |
+| taskType | yes | Task category — **platform dropdown select**, not free text. Ask the human for a valid value rather than inventing one |
+| assignTo | yes | Who handles the task — a real user/group id from the platform, not a name you make up |
+| template | no | Form template ID — **platform dropdown select** when set |
 | saveOutputAs | no | Variable to store result |
 
 ---

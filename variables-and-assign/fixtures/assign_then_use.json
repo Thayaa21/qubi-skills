@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "e19f9c8c-e9da-4150-ab22-22e6889d2c00",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "a3c7a275-5b73-48d7-be56-57c52d83d35b",
+      "type": "Assign",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Assign",
+        "name": "Set API Key",
+        "assignments": [
+          {
+            "variable": "apiKey",
+            "value": "abc123"
+          }
+        ]
+      }
+    },
+    {
+      "id": "4b3d8a77-7c11-4558-9fe4-709969d68cdc",
+      "type": "Http",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Fetch Orders",
+        "method": "GET",
+        "url": "https://api.example.com/orders?key={{apiKey}}",
+        "saveOutputAs": "ordersRaw"
+      }
+    },
+    {
+      "id": "68e482f7-6e97-4b70-b477-3e5e2a1cf1c2",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__e19f9c8c-e9da-4150-ab22-22e6889d2c00-a3c7a275-5b73-48d7-be56-57c52d83d35b",
+      "source": "e19f9c8c-e9da-4150-ab22-22e6889d2c00",
+      "target": "a3c7a275-5b73-48d7-be56-57c52d83d35b"
+    },
+    {
+      "id": "xy-edge__a3c7a275-5b73-48d7-be56-57c52d83d35b-4b3d8a77-7c11-4558-9fe4-709969d68cdc",
+      "source": "a3c7a275-5b73-48d7-be56-57c52d83d35b",
+      "target": "4b3d8a77-7c11-4558-9fe4-709969d68cdc"
+    },
+    {
+      "id": "xy-edge__4b3d8a77-7c11-4558-9fe4-709969d68cdc-68e482f7-6e97-4b70-b477-3e5e2a1cf1c2",
+      "source": "4b3d8a77-7c11-4558-9fe4-709969d68cdc",
+      "target": "68e482f7-6e97-4b70-b477-3e5e2a1cf1c2"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

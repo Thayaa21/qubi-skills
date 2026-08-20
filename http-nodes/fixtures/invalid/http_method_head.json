@@ -1,0 +1,60 @@
+{
+  "nodes": [
+    {
+      "id": "ad620db2-2729-4c3b-b9a8-ce999af235c8",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "c04fd24a-9ae7-4cb2-8e0c-ada36c9fdf48",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Bad Method",
+        "method": "HEAD",
+        "url": "https://api.example.com"
+      }
+    },
+    {
+      "id": "9d79324d-6707-4859-acee-5f4e3abd0085",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__ad620db2-2729-4c3b-b9a8-ce999af235c8-c04fd24a-9ae7-4cb2-8e0c-ada36c9fdf48",
+      "source": "ad620db2-2729-4c3b-b9a8-ce999af235c8",
+      "target": "c04fd24a-9ae7-4cb2-8e0c-ada36c9fdf48"
+    },
+    {
+      "id": "xy-edge__c04fd24a-9ae7-4cb2-8e0c-ada36c9fdf48-9d79324d-6707-4859-acee-5f4e3abd0085",
+      "source": "c04fd24a-9ae7-4cb2-8e0c-ada36c9fdf48",
+      "target": "9d79324d-6707-4859-acee-5f4e3abd0085"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

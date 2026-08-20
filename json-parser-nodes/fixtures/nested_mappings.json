@@ -1,0 +1,91 @@
+{
+  "nodes": [
+    {
+      "id": "f103dd64-3f26-4f9e-9c42-b993f41336dd",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "13c45532-907a-4f2c-bd1e-658cc2c5daf3",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Order List",
+        "method": "GET",
+        "url": "https://api.example.com/orders?key={{apiKey}}",
+        "saveOutputAs": "ordersRaw"
+      }
+    },
+    {
+      "id": "d05c91e3-a149-43d6-b288-31e229092178",
+      "type": "JsonParser",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "JsonParser",
+        "name": "Extract First Order",
+        "input": {
+          "source": "ordersRaw"
+        },
+        "mappings": [
+          {
+            "jsonPath": "$.orders[0].id",
+            "variable": "orderId"
+          },
+          {
+            "jsonPath": "$.orders[0].total",
+            "variable": "orderTotal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "10f6625a-1a79-41d8-9a93-15e178f6b81b",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__f103dd64-3f26-4f9e-9c42-b993f41336dd-13c45532-907a-4f2c-bd1e-658cc2c5daf3",
+      "source": "f103dd64-3f26-4f9e-9c42-b993f41336dd",
+      "target": "13c45532-907a-4f2c-bd1e-658cc2c5daf3"
+    },
+    {
+      "id": "xy-edge__13c45532-907a-4f2c-bd1e-658cc2c5daf3-d05c91e3-a149-43d6-b288-31e229092178",
+      "source": "13c45532-907a-4f2c-bd1e-658cc2c5daf3",
+      "target": "d05c91e3-a149-43d6-b288-31e229092178"
+    },
+    {
+      "id": "xy-edge__d05c91e3-a149-43d6-b288-31e229092178-10f6625a-1a79-41d8-9a93-15e178f6b81b",
+      "source": "d05c91e3-a149-43d6-b288-31e229092178",
+      "target": "10f6625a-1a79-41d8-9a93-15e178f6b81b"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

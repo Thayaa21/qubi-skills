@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "a0dcee25-d6ce-4d58-a746-28f821720e83",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "46379ff6-df83-4c2e-9ae8-57457b14a58e",
+      "type": "Assign",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Assign",
+        "name": "Set File Path",
+        "assignments": [
+          {
+            "variable": "filePath",
+            "value": "/uploads/invoice_001.pdf"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2615d51c-0728-4fca-bdea-b157f62181a6",
+      "type": "DocumentAI",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "DocumentAI",
+        "name": "Extract Invoice Fields",
+        "operation": "UNVERIFIED",
+        "fileVariable": "filePath",
+        "saveOutputAs": "extractedData"
+      }
+    },
+    {
+      "id": "401f73ea-a461-41f1-81ab-dfac5ea467c1",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__a0dcee25-d6ce-4d58-a746-28f821720e83-46379ff6-df83-4c2e-9ae8-57457b14a58e",
+      "source": "a0dcee25-d6ce-4d58-a746-28f821720e83",
+      "target": "46379ff6-df83-4c2e-9ae8-57457b14a58e"
+    },
+    {
+      "id": "xy-edge__46379ff6-df83-4c2e-9ae8-57457b14a58e-2615d51c-0728-4fca-bdea-b157f62181a6",
+      "source": "46379ff6-df83-4c2e-9ae8-57457b14a58e",
+      "target": "2615d51c-0728-4fca-bdea-b157f62181a6"
+    },
+    {
+      "id": "xy-edge__2615d51c-0728-4fca-bdea-b157f62181a6-401f73ea-a461-41f1-81ab-dfac5ea467c1",
+      "source": "2615d51c-0728-4fca-bdea-b157f62181a6",
+      "target": "401f73ea-a461-41f1-81ab-dfac5ea467c1"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

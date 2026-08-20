@@ -1,0 +1,131 @@
+{
+  "nodes": [
+    {
+      "id": "7c2e4b90-2b3c-49e3-a878-392e6f71580d",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "9d97d454-0430-425c-93ed-71f3a970b547",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 80
+      },
+      "data": {
+        "type": "Http",
+        "name": "Fetch Inventory",
+        "method": "GET",
+        "url": "https://api.example.com/inventory",
+        "saveOutputAs": "inventory"
+      }
+    },
+    {
+      "id": "7f851aa9-681a-41b4-8af2-572cee25b489",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Fetch Pricing",
+        "method": "GET",
+        "url": "https://api.example.com/pricing",
+        "saveOutputAs": "pricing"
+      }
+    },
+    {
+      "id": "d353c11e-5425-4840-a201-ecf166fbafd6",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 320
+      },
+      "data": {
+        "type": "Http",
+        "name": "Fetch Reviews",
+        "method": "GET",
+        "url": "https://api.example.com/reviews",
+        "saveOutputAs": "reviews"
+      }
+    },
+    {
+      "id": "520610b3-2032-4d7f-803f-525f202146a1",
+      "type": "Code",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "Code",
+        "name": "Aggregate Product Page",
+        "language": "javascript",
+        "code": "return { inventory: input.inventory, pricing: input.pricing, reviews: input.reviews };",
+        "saveOutputAs": "productPage"
+      }
+    },
+    {
+      "id": "87f9dcc8-f95a-4dea-87f3-f16975db7ce4",
+      "type": "End",
+      "position": {
+        "x": 700,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__7c2e4b90-2b3c-49e3-a878-392e6f71580d-9d97d454-0430-425c-93ed-71f3a970b547",
+      "source": "7c2e4b90-2b3c-49e3-a878-392e6f71580d",
+      "target": "9d97d454-0430-425c-93ed-71f3a970b547"
+    },
+    {
+      "id": "xy-edge__7c2e4b90-2b3c-49e3-a878-392e6f71580d-7f851aa9-681a-41b4-8af2-572cee25b489",
+      "source": "7c2e4b90-2b3c-49e3-a878-392e6f71580d",
+      "target": "7f851aa9-681a-41b4-8af2-572cee25b489"
+    },
+    {
+      "id": "xy-edge__7c2e4b90-2b3c-49e3-a878-392e6f71580d-d353c11e-5425-4840-a201-ecf166fbafd6",
+      "source": "7c2e4b90-2b3c-49e3-a878-392e6f71580d",
+      "target": "d353c11e-5425-4840-a201-ecf166fbafd6"
+    },
+    {
+      "id": "xy-edge__9d97d454-0430-425c-93ed-71f3a970b547-520610b3-2032-4d7f-803f-525f202146a1",
+      "source": "9d97d454-0430-425c-93ed-71f3a970b547",
+      "target": "520610b3-2032-4d7f-803f-525f202146a1"
+    },
+    {
+      "id": "xy-edge__7f851aa9-681a-41b4-8af2-572cee25b489-520610b3-2032-4d7f-803f-525f202146a1",
+      "source": "7f851aa9-681a-41b4-8af2-572cee25b489",
+      "target": "520610b3-2032-4d7f-803f-525f202146a1"
+    },
+    {
+      "id": "xy-edge__d353c11e-5425-4840-a201-ecf166fbafd6-520610b3-2032-4d7f-803f-525f202146a1",
+      "source": "d353c11e-5425-4840-a201-ecf166fbafd6",
+      "target": "520610b3-2032-4d7f-803f-525f202146a1"
+    },
+    {
+      "id": "xy-edge__520610b3-2032-4d7f-803f-525f202146a1-87f9dcc8-f95a-4dea-87f3-f16975db7ce4",
+      "source": "520610b3-2032-4d7f-803f-525f202146a1",
+      "target": "87f9dcc8-f95a-4dea-87f3-f16975db7ce4"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

@@ -1,0 +1,78 @@
+{
+  "nodes": [
+    {
+      "id": "9c3ad190-9ef1-4dc9-828e-7b31b33e9aa1",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "121fce21-2193-48e8-93c7-638fd132784a",
+      "type": "Hitl",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Hitl",
+        "name": "Pause For Human"
+      }
+    },
+    {
+      "id": "08bcba22-2c20-4c18-adc1-31c4742572b9",
+      "type": "HitlTask",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "HitlTask",
+        "name": "Collect Decision",
+        "taskName": "Collect Decision",
+        "taskType": "UNVERIFIED",
+        "assignTo": "UNVERIFIED"
+      }
+    },
+    {
+      "id": "74a3e792-1566-4013-9a3b-2badb53c8695",
+      "type": "End",
+      "position": {
+        "x": 700,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__9c3ad190-9ef1-4dc9-828e-7b31b33e9aa1-121fce21-2193-48e8-93c7-638fd132784a",
+      "source": "9c3ad190-9ef1-4dc9-828e-7b31b33e9aa1",
+      "target": "121fce21-2193-48e8-93c7-638fd132784a"
+    },
+    {
+      "id": "xy-edge__121fce21-2193-48e8-93c7-638fd132784a-08bcba22-2c20-4c18-adc1-31c4742572b9",
+      "source": "121fce21-2193-48e8-93c7-638fd132784a",
+      "target": "08bcba22-2c20-4c18-adc1-31c4742572b9"
+    },
+    {
+      "id": "xy-edge__08bcba22-2c20-4c18-adc1-31c4742572b9-74a3e792-1566-4013-9a3b-2badb53c8695",
+      "source": "08bcba22-2c20-4c18-adc1-31c4742572b9",
+      "target": "74a3e792-1566-4013-9a3b-2badb53c8695"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

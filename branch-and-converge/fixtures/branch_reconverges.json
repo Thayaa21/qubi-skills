@@ -1,0 +1,145 @@
+{
+  "nodes": [
+    {
+      "id": "03ec4f29-1070-4e41-8079-c25f72d872c0",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "94c2f70a-3b5e-4af4-b27a-ad40564872b4",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Check Status",
+        "method": "GET",
+        "url": "https://api.example.com/status",
+        "saveOutputAs": "statusResult"
+      }
+    },
+    {
+      "id": "97cbcf90-f857-4e3e-bc64-270ffd72ab62",
+      "type": "Branch",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Status OK?",
+        "conditions": [
+          {
+            "expression": "statusResult.ok == true"
+          }
+        ]
+      }
+    },
+    {
+      "id": "11852ccd-a733-4499-9c66-274bb903c87d",
+      "type": "Code",
+      "position": {
+        "x": 580,
+        "y": 100
+      },
+      "data": {
+        "type": "Code",
+        "name": "Log Success",
+        "language": "javascript",
+        "code": "console.log('ok');"
+      }
+    },
+    {
+      "id": "0c0d8c33-6f14-4ebd-b71a-8ed0f44a3ef7",
+      "type": "Code",
+      "position": {
+        "x": 580,
+        "y": 300
+      },
+      "data": {
+        "type": "Code",
+        "name": "Log Error",
+        "language": "javascript",
+        "code": "console.log('error');"
+      }
+    },
+    {
+      "id": "49a9efa1-5142-4c00-baea-a971c2206c53",
+      "type": "Http",
+      "position": {
+        "x": 740,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Send Notification",
+        "method": "POST",
+        "url": "https://api.example.com/notify"
+      }
+    },
+    {
+      "id": "c1500551-99aa-4e6e-bdac-f2e3074edc7f",
+      "type": "End",
+      "position": {
+        "x": 900,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__03ec4f29-1070-4e41-8079-c25f72d872c0-94c2f70a-3b5e-4af4-b27a-ad40564872b4",
+      "source": "03ec4f29-1070-4e41-8079-c25f72d872c0",
+      "target": "94c2f70a-3b5e-4af4-b27a-ad40564872b4"
+    },
+    {
+      "id": "xy-edge__94c2f70a-3b5e-4af4-b27a-ad40564872b4-97cbcf90-f857-4e3e-bc64-270ffd72ab62",
+      "source": "94c2f70a-3b5e-4af4-b27a-ad40564872b4",
+      "target": "97cbcf90-f857-4e3e-bc64-270ffd72ab62"
+    },
+    {
+      "id": "xy-edge__97cbcf90-f857-4e3e-bc64-270ffd72ab62-11852ccd-a733-4499-9c66-274bb903c87d",
+      "source": "97cbcf90-f857-4e3e-bc64-270ffd72ab62",
+      "target": "11852ccd-a733-4499-9c66-274bb903c87d"
+    },
+    {
+      "id": "xy-edge__97cbcf90-f857-4e3e-bc64-270ffd72ab62-0c0d8c33-6f14-4ebd-b71a-8ed0f44a3ef7",
+      "source": "97cbcf90-f857-4e3e-bc64-270ffd72ab62",
+      "target": "0c0d8c33-6f14-4ebd-b71a-8ed0f44a3ef7"
+    },
+    {
+      "id": "xy-edge__11852ccd-a733-4499-9c66-274bb903c87d-49a9efa1-5142-4c00-baea-a971c2206c53",
+      "source": "11852ccd-a733-4499-9c66-274bb903c87d",
+      "target": "49a9efa1-5142-4c00-baea-a971c2206c53"
+    },
+    {
+      "id": "xy-edge__0c0d8c33-6f14-4ebd-b71a-8ed0f44a3ef7-49a9efa1-5142-4c00-baea-a971c2206c53",
+      "source": "0c0d8c33-6f14-4ebd-b71a-8ed0f44a3ef7",
+      "target": "49a9efa1-5142-4c00-baea-a971c2206c53"
+    },
+    {
+      "id": "xy-edge__49a9efa1-5142-4c00-baea-a971c2206c53-c1500551-99aa-4e6e-bdac-f2e3074edc7f",
+      "source": "49a9efa1-5142-4c00-baea-a971c2206c53",
+      "target": "c1500551-99aa-4e6e-bdac-f2e3074edc7f"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}
