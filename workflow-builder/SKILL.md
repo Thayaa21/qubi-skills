@@ -53,10 +53,11 @@ extend, a human must create one in the qubi web UI first and give you its ID —
 
 If any networked command (`flow list`, `flow get`, `agents list`, `rpa list`,
 `flow save`, `flow run`) fails with a 401/auth error, do not retry it blindly.
-Tell the human and suggest `qcli login --browser`, which opens a real browser
+Tell the human and suggest the default `qcli login`, which opens a real browser
 window for them to log in and harvests the session cookies afterward. The
-non-browser `qcli login` is known to store cookies for the wrong host and will
-not authenticate networked calls.
+`qcli login --no-browser` path is known to capture Identity Server cookies
+rather than AgentHub cookies and will not authenticate networked calls; if the
+default login itself seems stuck, use `qcli login --headed` to watch it happen.
 
 ## Phase 1: Understand the Request
 
@@ -251,8 +252,8 @@ qcli flow run <workflow-id>
 - Ask the human before `flow save` or `flow run`
 - Ask the human to pick agent/automation IDs from `agents list` / `rpa list`
 - Use exact type casing: `Http`, `Hitl`, `RPA`, `DocumentAI`, `HitlTask`, `JsonParser`, `TextParser`
-- If a networked command fails on auth, tell the human and suggest `qcli login --browser`
-  rather than retrying silently
+- If a networked command fails on auth, tell the human and suggest the default
+  `qcli login` (browser-based) rather than retrying silently; use `qcli login --headed` to debug a stuck login
 
 **Never:**
 - Invent node types not in the schema

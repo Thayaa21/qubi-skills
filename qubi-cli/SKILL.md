@@ -45,18 +45,18 @@ description: "Complete CLI reference for the qcli command-line tool. Auth, workf
 Authenticate with the qubi platform. Uses automated browser login by default.
 
 ```bash
-qubi login                  # Browser-based login (default)
-qubi login --headed         # Show browser window (debugging)
-qubi login --no-browser     # Direct API login (prompts for credentials)
-qubi login --server <url>   # Custom AgentHub URL
+qcli login                  # Browser-based login (default)
+qcli login --headed         # Show browser window (debugging)
+qcli login --no-browser     # Direct API login (prompts for credentials)
+qcli login --server <url>   # Custom AgentHub URL
 ```
 
 **Behavior:**
 - Credentials are prompted once and stored for future sessions
 - Default uses headless browser automation
-- `--no-browser` falls back to direct API username/password prompt
+- `--no-browser` falls back to direct API username/password prompt, which captures Identity Server cookies (not AgentHub cookies) — networked commands may still 401 afterward, so prefer the default browser login
 
-#### `qubi logout`
+#### `qcli logout`
 
 Clear stored session credentials.
 
@@ -65,10 +65,6 @@ qcli logout
 ```
 
 #### `qcli status`
-qubi logout
-```
-
-#### `qubi status`
 
 Show current login status (logged in / not logged in, which server).
 
@@ -88,21 +84,6 @@ List all workflows on the platform. Results are cached locally so `flow use` can
 qcli flow list                    # show all workflows
 qcli flow list -s "invoice"       # search by name
 qcli flow list --json-output      # machine-readable JSON output
-qubi status
-```
-
----
-
-### Workflow Commands (`qubi flow`)
-
-#### `qubi flow list`
-
-List all workflows on the platform.
-
-```bash
-qubi flow list                    # Show all workflows
-qubi flow list -s "invoice"       # Search by name
-qubi flow list --json-output      # Machine-readable JSON output
 ```
 
 | Flag | Description |
@@ -120,29 +101,12 @@ qcli flow use 3     # select workflow #3 from the list
 
 #### `qcli flow get <workflow-id>`
 
-Download a workflow graph as JSON. By default this writes a file under `workflows/` (named from the cached workflow name, or the id) rather than printing — pass `-o -` for stdout.
-
-```bash
-qcli flow get abc123                            # auto-saves to workflows/<name>.json
-qcli flow get abc123 -o my-flow.json            # save to a specific file
-qcli flow get abc123 -o my-flow.json --pretty   # pretty-printed
-qcli flow get abc123 -o -                       # print to stdout, for piping
-#### `qubi flow use <number>`
-
-Select a workflow from the list by its display number. Useful after running `qubi flow list`.
-
-```bash
-qubi flow use 3     # Select workflow #3 from the list
-```
-
-#### `qubi flow get <workflow-id>`
-
 Download a workflow graph as JSON.
 
 ```bash
-qubi flow get abc123                           # Print to stdout
-qubi flow get abc123 -o my-flow.json           # Save to file
-qubi flow get abc123 -o my-flow.json --pretty  # Pretty-printed
+qcli flow get abc123                            # save to file
+qcli flow get abc123 -o my-flow.json            # save to a specific file
+qcli flow get abc123 -o my-flow.json --pretty   # pretty-printed
 ```
 
 | Flag | Description |
@@ -150,13 +114,13 @@ qubi flow get abc123 -o my-flow.json --pretty  # Pretty-printed
 | `-o, --output TEXT` | Output file path |
 | `--pretty / --no-pretty` | Pretty-print the JSON |
 
-#### `qubi flow validate <file>`
+#### `qcli flow validate <file>`
 
 Validate a workflow JSON file against the schema. Always run this before saving.
 
 ```bash
-qubi flow validate workflow.json              # Human-readable output
-qubi flow validate workflow.json -j           # JSON error output
+qcli flow validate workflow.json              # human-readable output
+qcli flow validate workflow.json -j           # JSON error output
 ```
 
 | Flag | Description |
@@ -167,12 +131,12 @@ qubi flow validate workflow.json -j           # JSON error output
 - `0` — valid, no errors
 - `1` — validation errors found
 
-#### `qubi flow save <file>`
+#### `qcli flow save <file>`
 
 Push a local workflow JSON file to the qubi platform.
 
 ```bash
-qubi flow save workflow.json --workflow-id <id>
+qcli flow save workflow.json --workflow-id <id>
 ```
 
 | Flag | Required | Description |
@@ -187,12 +151,12 @@ qubi flow save workflow.json --workflow-id <id>
 - Always ask the human for confirmation before saving
 - Always validate first (don't use `--skip-validate`)
 
-#### `qubi flow run <workflow-id>`
+#### `qcli flow run <workflow-id>`
 
 Execute a workflow on the platform.
 
 ```bash
-qubi flow run <workflow-id>
+qcli flow run <workflow-id>
 ```
 
 | Flag | Description |
@@ -205,15 +169,15 @@ qubi flow run <workflow-id>
 
 ---
 
-### Agent Commands (`qubi agents`)
+### Agent Commands (`qcli agents`)
 
-#### `qubi agents list`
+#### `qcli agents list`
 
 List all available AI agents on the platform. Use this to get `agentId` values for Agent nodes.
 
 ```bash
-qubi agents list                # Human-readable table
-qubi agents list -j             # JSON output for parsing
+qcli agents list                # human-readable table
+qcli agents list -j             # JSON output for parsing
 ```
 
 | Flag | Description |
@@ -224,15 +188,15 @@ qubi agents list -j             # JSON output for parsing
 
 ---
 
-### RPA Commands (`qubi rpa`)
+### RPA Commands (`qcli rpa`)
 
-#### `qubi rpa list`
+#### `qcli rpa list`
 
 List all available RPA automations. Use this to get `automationId` values for RPA nodes.
 
 ```bash
-qubi rpa list                   # Human-readable table
-qubi rpa list -j                # JSON output for parsing
+qcli rpa list                   # human-readable table
+qcli rpa list -j                # JSON output for parsing
 ```
 
 | Flag | Description |
@@ -243,64 +207,13 @@ qubi rpa list -j                # JSON output for parsing
 
 ---
 
-### Skills Commands (`qubi skills`)
-
-#### `qubi skills install`
-
-Download and install qubi skills into your AI coding agent's skills directory.
-
-```bash
-qubi skills install                         # Install for default agent (Claude)
-qubi skills install --agent claude          # Explicit agent target
-qubi skills install --repo <url>            # Custom skills repository
-```
-
-| Flag | Description |
-|------|-------------|
-| `--repo TEXT` | Custom skills repository URL |
-| `--agent [claude]` | Target AI agent |
-
-#### `qubi skills list`
-
-Show which skills are currently installed.
-
-```bash
-qubi skills list                            # List installed skills
-qubi skills list --agent claude             # For specific agent
-```
-
-#### `qubi skills update`
-
-Update installed skills to the latest version from the repository.
-
-```bash
-qubi skills update                          # Update all
-qubi skills update --repo <url>             # From custom repo
-```
-
-#### `qubi skills uninstall`
-
-Remove all installed qubi skills.
-
-```bash
-qubi skills uninstall                       # Prompts for confirmation
-qubi skills uninstall --agent claude        # For specific agent
-```
-
-| Flag | Description |
-|------|-------------|
-| `--agent [claude]` | Target AI agent |
-| `-y, --yes` | Skip confirmation (DO NOT USE in agent context) |
-
----
-
 ## Common Workflows
 
 ### First-time setup
 ```bash
-qubi login
-qubi status          # Verify: "Logged in as ..."
-qubi flow list       # See what's available
+qcli login
+qcli status          # verify: "Logged in as ..."
+qcli flow list       # see what's available
 ```
 
 ### Build and deploy a new workflow
@@ -340,7 +253,7 @@ qcli rpa list -j       # get automationId for RPA nodes
 | "Validation failed" | Invalid workflow JSON | Run `qcli flow validate` and fix errors |
 | Login times out or fails silently | Browser automation couldn't find/fill the form | Run `qcli login --headed` to see what's happening |
 | `--no-browser` login accepted but other commands 401 | Direct API login captures Identity Server cookies, not AgentHub cookies — a known limitation | Use the default browser login instead |
-| "Could not start the workflow" from `flow run` | Neither REST endpoint nor the SignalR hub could run it | The workflow may only be runnable from the web UI for now — this is a real platform limitation, not a bug to work around |
+| "Could not start the workflow" from `flow run` | Neither REST endpoint nor the SignalR hub could run it | The workflow may only be runnable from the web UI for now — a real platform limitation, not a bug to work around |
 | Connection issue | Wrong server or network issue | Check `qcli status`, try `qcli login --server <url>` |
 | Permission denied | Account lacks access | Contact platform admin |
 

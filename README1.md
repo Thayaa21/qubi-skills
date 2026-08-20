@@ -66,7 +66,8 @@ Run the tests: `cd qcli-web && pip install pytest && python -m pytest tests/ -v`
 
 ## Known limitations (unchanged, documented, not addressed by this push)
 
-- `qcli login` doesn't complete the OAuth2 PKCE flow, so it authenticates against the
-  wrong host. `qcli login --browser` works around it. See `qcli-web/docs/SDD.md` §12.1.
+- `qcli login --no-browser` doesn't complete the OAuth2 PKCE flow, so it authenticates
+  against the wrong host. The default browser-based `qcli login` works around it (use
+  `--headed` to watch it). See `qcli-web/docs/SDD.md` §12.1.
 - `flow run` / job-status endpoints are inferred, never confirmed against live traffic.
 - There is no `flow create` — `flow save` only writes into an existing workflow ID.
