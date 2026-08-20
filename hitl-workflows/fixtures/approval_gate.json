@@ -1,0 +1,146 @@
+{
+  "nodes": [
+    {
+      "id": "89066e62-83c2-49b7-bdef-b1e0bc2ed0ab",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "e43ec12f-bc5a-4289-85c8-0484fba3bc81",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Generate Report",
+        "method": "POST",
+        "url": "https://api.example.com/reports"
+      }
+    },
+    {
+      "id": "1bf7e3d1-6c8d-40f6-b78c-76490755a67a",
+      "type": "HitlTask",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "HitlTask",
+        "name": "Review Generated Report",
+        "taskName": "Review Generated Report",
+        "taskType": "UNVERIFIED",
+        "assignTo": "UNVERIFIED",
+        "saveOutputAs": "approvalResult"
+      }
+    },
+    {
+      "id": "59e977f1-8bef-4c94-ba4d-891248a1ad1f",
+      "type": "Branch",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Approval Decision",
+        "conditions": [
+          {
+            "expression": "approvalResult.status == 'approved'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "7a272c3e-59bc-451d-85cb-a7551f2ddb8d",
+      "type": "Code",
+      "position": {
+        "x": 740,
+        "y": 100
+      },
+      "data": {
+        "type": "Code",
+        "name": "Send Approval Notice",
+        "language": "javascript",
+        "code": "return 'approved';"
+      }
+    },
+    {
+      "id": "6ffb2e4e-d57c-4dd6-bda4-3212e62538f3",
+      "type": "Code",
+      "position": {
+        "x": 740,
+        "y": 300
+      },
+      "data": {
+        "type": "Code",
+        "name": "Send Rejection Notice",
+        "language": "javascript",
+        "code": "return 'rejected';"
+      }
+    },
+    {
+      "id": "732c613b-a58e-4d67-a92d-b0649911dc81",
+      "type": "End",
+      "position": {
+        "x": 900,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__89066e62-83c2-49b7-bdef-b1e0bc2ed0ab-e43ec12f-bc5a-4289-85c8-0484fba3bc81",
+      "source": "89066e62-83c2-49b7-bdef-b1e0bc2ed0ab",
+      "target": "e43ec12f-bc5a-4289-85c8-0484fba3bc81"
+    },
+    {
+      "id": "xy-edge__e43ec12f-bc5a-4289-85c8-0484fba3bc81-1bf7e3d1-6c8d-40f6-b78c-76490755a67a",
+      "source": "e43ec12f-bc5a-4289-85c8-0484fba3bc81",
+      "target": "1bf7e3d1-6c8d-40f6-b78c-76490755a67a"
+    },
+    {
+      "id": "xy-edge__1bf7e3d1-6c8d-40f6-b78c-76490755a67a-59e977f1-8bef-4c94-ba4d-891248a1ad1f",
+      "source": "1bf7e3d1-6c8d-40f6-b78c-76490755a67a",
+      "target": "59e977f1-8bef-4c94-ba4d-891248a1ad1f"
+    },
+    {
+      "id": "xy-edge__59e977f1-8bef-4c94-ba4d-891248a1ad1f-7a272c3e-59bc-451d-85cb-a7551f2ddb8d",
+      "source": "59e977f1-8bef-4c94-ba4d-891248a1ad1f",
+      "target": "7a272c3e-59bc-451d-85cb-a7551f2ddb8d"
+    },
+    {
+      "id": "xy-edge__59e977f1-8bef-4c94-ba4d-891248a1ad1f-6ffb2e4e-d57c-4dd6-bda4-3212e62538f3",
+      "source": "59e977f1-8bef-4c94-ba4d-891248a1ad1f",
+      "target": "6ffb2e4e-d57c-4dd6-bda4-3212e62538f3"
+    },
+    {
+      "id": "xy-edge__7a272c3e-59bc-451d-85cb-a7551f2ddb8d-732c613b-a58e-4d67-a92d-b0649911dc81",
+      "source": "7a272c3e-59bc-451d-85cb-a7551f2ddb8d",
+      "target": "732c613b-a58e-4d67-a92d-b0649911dc81"
+    },
+    {
+      "id": "xy-edge__6ffb2e4e-d57c-4dd6-bda4-3212e62538f3-732c613b-a58e-4d67-a92d-b0649911dc81",
+      "source": "6ffb2e4e-d57c-4dd6-bda4-3212e62538f3",
+      "target": "732c613b-a58e-4d67-a92d-b0649911dc81"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

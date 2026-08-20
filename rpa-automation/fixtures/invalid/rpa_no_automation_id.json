@@ -1,0 +1,58 @@
+{
+  "nodes": [
+    {
+      "id": "1d13aced-4e19-4a4b-b451-f3136a97cb64",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "93666a00-25a0-4735-98fb-2c825b63251e",
+      "type": "RPA",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "RPA",
+        "name": "Incomplete"
+      }
+    },
+    {
+      "id": "876dfb6f-aa68-4e3c-bd9f-f2641ed1db06",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__1d13aced-4e19-4a4b-b451-f3136a97cb64-93666a00-25a0-4735-98fb-2c825b63251e",
+      "source": "1d13aced-4e19-4a4b-b451-f3136a97cb64",
+      "target": "93666a00-25a0-4735-98fb-2c825b63251e"
+    },
+    {
+      "id": "xy-edge__93666a00-25a0-4735-98fb-2c825b63251e-876dfb6f-aa68-4e3c-bd9f-f2641ed1db06",
+      "source": "93666a00-25a0-4735-98fb-2c825b63251e",
+      "target": "876dfb6f-aa68-4e3c-bd9f-f2641ed1db06"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

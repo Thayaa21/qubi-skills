@@ -1,0 +1,125 @@
+{
+  "nodes": [
+    {
+      "id": "75812a7a-fac8-4734-9f3d-1c00a94de0d4",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "14f65f07-e764-43b4-8e6d-b0b8c23fc1f3",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Application",
+        "method": "GET",
+        "url": "https://api.example.com/app"
+      }
+    },
+    {
+      "id": "529ba7ba-7ba1-4cd3-abb3-e8a1381307e5",
+      "type": "Branch",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Eligible?",
+        "conditions": [
+          {
+            "expression": "eligible == true"
+          }
+        ]
+      }
+    },
+    {
+      "id": "f13ecc6f-472b-4c97-86f4-d1c50e877052",
+      "type": "Http",
+      "position": {
+        "x": 580,
+        "y": 100
+      },
+      "data": {
+        "type": "Http",
+        "name": "Approve",
+        "method": "POST",
+        "url": "https://api.example.com/approve"
+      }
+    },
+    {
+      "id": "69fe1fab-4a24-498c-b272-3c3aa0a10f6e",
+      "type": "Http",
+      "position": {
+        "x": 580,
+        "y": 300
+      },
+      "data": {
+        "type": "Http",
+        "name": "Reject",
+        "method": "POST",
+        "url": "https://api.example.com/reject"
+      }
+    },
+    {
+      "id": "c7319514-4631-463d-9ae6-e8872b34906a",
+      "type": "End",
+      "position": {
+        "x": 740,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__75812a7a-fac8-4734-9f3d-1c00a94de0d4-14f65f07-e764-43b4-8e6d-b0b8c23fc1f3",
+      "source": "75812a7a-fac8-4734-9f3d-1c00a94de0d4",
+      "target": "14f65f07-e764-43b4-8e6d-b0b8c23fc1f3"
+    },
+    {
+      "id": "xy-edge__14f65f07-e764-43b4-8e6d-b0b8c23fc1f3-529ba7ba-7ba1-4cd3-abb3-e8a1381307e5",
+      "source": "14f65f07-e764-43b4-8e6d-b0b8c23fc1f3",
+      "target": "529ba7ba-7ba1-4cd3-abb3-e8a1381307e5"
+    },
+    {
+      "id": "xy-edge__529ba7ba-7ba1-4cd3-abb3-e8a1381307e5-f13ecc6f-472b-4c97-86f4-d1c50e877052",
+      "source": "529ba7ba-7ba1-4cd3-abb3-e8a1381307e5",
+      "target": "f13ecc6f-472b-4c97-86f4-d1c50e877052"
+    },
+    {
+      "id": "xy-edge__529ba7ba-7ba1-4cd3-abb3-e8a1381307e5-69fe1fab-4a24-498c-b272-3c3aa0a10f6e",
+      "source": "529ba7ba-7ba1-4cd3-abb3-e8a1381307e5",
+      "target": "69fe1fab-4a24-498c-b272-3c3aa0a10f6e"
+    },
+    {
+      "id": "xy-edge__f13ecc6f-472b-4c97-86f4-d1c50e877052-c7319514-4631-463d-9ae6-e8872b34906a",
+      "source": "f13ecc6f-472b-4c97-86f4-d1c50e877052",
+      "target": "c7319514-4631-463d-9ae6-e8872b34906a"
+    },
+    {
+      "id": "xy-edge__69fe1fab-4a24-498c-b272-3c3aa0a10f6e-c7319514-4631-463d-9ae6-e8872b34906a",
+      "source": "69fe1fab-4a24-498c-b272-3c3aa0a10f6e",
+      "target": "c7319514-4631-463d-9ae6-e8872b34906a"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

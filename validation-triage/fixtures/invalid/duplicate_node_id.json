@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {
+      "id": "fda2ec6f-2433-4cca-b4c0-aa0dd36371fd",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "fda2ec6f-2433-4cca-b4c0-aa0dd36371fd",
+      "type": "End",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

@@ -1,0 +1,154 @@
+{
+  "nodes": [
+    {
+      "id": "83be8346-1420-4901-b58c-353842a4334f",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "a3d92b45-3ee8-42b8-8b81-7c8da15c9c22",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Call API",
+        "method": "POST",
+        "url": "https://api.example.com/submit",
+        "saveOutputAs": "attempt1"
+      }
+    },
+    {
+      "id": "c1f18497-69e7-416f-ac21-877f0364a0d7",
+      "type": "Branch",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Attempt 1 OK?",
+        "conditions": [
+          {
+            "expression": "attempt1.status == 200"
+          }
+        ]
+      }
+    },
+    {
+      "id": "0ea2ffcb-d0c4-4dbe-bf5e-a4cd184ada9f",
+      "type": "Http",
+      "position": {
+        "x": 580,
+        "y": 340
+      },
+      "data": {
+        "type": "Http",
+        "name": "Retry API Call",
+        "method": "POST",
+        "url": "https://api.example.com/submit",
+        "saveOutputAs": "attempt2"
+      }
+    },
+    {
+      "id": "07b6f890-d173-4c50-8bf0-262c8f27826c",
+      "type": "Branch",
+      "position": {
+        "x": 740,
+        "y": 340
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Attempt 2 OK?",
+        "conditions": [
+          {
+            "expression": "attempt2.status == 200"
+          }
+        ]
+      }
+    },
+    {
+      "id": "396e46d8-b949-4395-addc-79de7de7124b",
+      "type": "Code",
+      "position": {
+        "x": 900,
+        "y": 460
+      },
+      "data": {
+        "type": "Code",
+        "name": "Log Final Failure",
+        "language": "javascript",
+        "code": "console.log('gave up after 2 attempts');"
+      }
+    },
+    {
+      "id": "9988329f-0fbb-401e-9b18-140cccd37f33",
+      "type": "End",
+      "position": {
+        "x": 1060,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__83be8346-1420-4901-b58c-353842a4334f-a3d92b45-3ee8-42b8-8b81-7c8da15c9c22",
+      "source": "83be8346-1420-4901-b58c-353842a4334f",
+      "target": "a3d92b45-3ee8-42b8-8b81-7c8da15c9c22"
+    },
+    {
+      "id": "xy-edge__a3d92b45-3ee8-42b8-8b81-7c8da15c9c22-c1f18497-69e7-416f-ac21-877f0364a0d7",
+      "source": "a3d92b45-3ee8-42b8-8b81-7c8da15c9c22",
+      "target": "c1f18497-69e7-416f-ac21-877f0364a0d7"
+    },
+    {
+      "id": "xy-edge__c1f18497-69e7-416f-ac21-877f0364a0d7-9988329f-0fbb-401e-9b18-140cccd37f33",
+      "source": "c1f18497-69e7-416f-ac21-877f0364a0d7",
+      "target": "9988329f-0fbb-401e-9b18-140cccd37f33"
+    },
+    {
+      "id": "xy-edge__c1f18497-69e7-416f-ac21-877f0364a0d7-0ea2ffcb-d0c4-4dbe-bf5e-a4cd184ada9f",
+      "source": "c1f18497-69e7-416f-ac21-877f0364a0d7",
+      "target": "0ea2ffcb-d0c4-4dbe-bf5e-a4cd184ada9f"
+    },
+    {
+      "id": "xy-edge__0ea2ffcb-d0c4-4dbe-bf5e-a4cd184ada9f-07b6f890-d173-4c50-8bf0-262c8f27826c",
+      "source": "0ea2ffcb-d0c4-4dbe-bf5e-a4cd184ada9f",
+      "target": "07b6f890-d173-4c50-8bf0-262c8f27826c"
+    },
+    {
+      "id": "xy-edge__07b6f890-d173-4c50-8bf0-262c8f27826c-9988329f-0fbb-401e-9b18-140cccd37f33",
+      "source": "07b6f890-d173-4c50-8bf0-262c8f27826c",
+      "target": "9988329f-0fbb-401e-9b18-140cccd37f33"
+    },
+    {
+      "id": "xy-edge__07b6f890-d173-4c50-8bf0-262c8f27826c-396e46d8-b949-4395-addc-79de7de7124b",
+      "source": "07b6f890-d173-4c50-8bf0-262c8f27826c",
+      "target": "396e46d8-b949-4395-addc-79de7de7124b"
+    },
+    {
+      "id": "xy-edge__396e46d8-b949-4395-addc-79de7de7124b-9988329f-0fbb-401e-9b18-140cccd37f33",
+      "source": "396e46d8-b949-4395-addc-79de7de7124b",
+      "target": "9988329f-0fbb-401e-9b18-140cccd37f33"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

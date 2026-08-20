@@ -1,0 +1,130 @@
+{
+  "nodes": [
+    {
+      "id": "5d6e99fe-a78c-49b2-91b6-a789900f70b5",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "a2b01069-8d68-4d29-8c11-4450114911a4",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Pending Tasks",
+        "method": "GET",
+        "url": "https://api.example.com/pending-tasks",
+        "saveOutputAs": "tasks"
+      }
+    },
+    {
+      "id": "553a17d2-5b03-48e7-a6ad-c8456cedb22c",
+      "type": "Code",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Code",
+        "name": "Any High Priority?",
+        "language": "javascript",
+        "code": "const t = JSON.parse(input); return t.filter(x => x.priority === 'high').length > 0 ? 'run_rpa' : 'skip';",
+        "input": {
+          "source": "tasks"
+        },
+        "saveOutputAs": "decision"
+      }
+    },
+    {
+      "id": "d86279cf-a3fb-41ff-95ab-da8518210c0a",
+      "type": "Branch",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Run RPA?",
+        "conditions": [
+          {
+            "expression": "decision == 'run_rpa'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2666da7f-cd19-4eb3-ba7f-9380f762b718",
+      "type": "RPA",
+      "position": {
+        "x": 740,
+        "y": 100
+      },
+      "data": {
+        "type": "RPA",
+        "name": "Process High Priority",
+        "automationId": "00000000-0000-0000-0000-000000000000",
+        "saveOutputAs": "rpaResult"
+      }
+    },
+    {
+      "id": "92f6e69f-cedd-433a-a4bb-9e626ca39ff4",
+      "type": "End",
+      "position": {
+        "x": 900,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__5d6e99fe-a78c-49b2-91b6-a789900f70b5-a2b01069-8d68-4d29-8c11-4450114911a4",
+      "source": "5d6e99fe-a78c-49b2-91b6-a789900f70b5",
+      "target": "a2b01069-8d68-4d29-8c11-4450114911a4"
+    },
+    {
+      "id": "xy-edge__a2b01069-8d68-4d29-8c11-4450114911a4-553a17d2-5b03-48e7-a6ad-c8456cedb22c",
+      "source": "a2b01069-8d68-4d29-8c11-4450114911a4",
+      "target": "553a17d2-5b03-48e7-a6ad-c8456cedb22c"
+    },
+    {
+      "id": "xy-edge__553a17d2-5b03-48e7-a6ad-c8456cedb22c-d86279cf-a3fb-41ff-95ab-da8518210c0a",
+      "source": "553a17d2-5b03-48e7-a6ad-c8456cedb22c",
+      "target": "d86279cf-a3fb-41ff-95ab-da8518210c0a"
+    },
+    {
+      "id": "xy-edge__d86279cf-a3fb-41ff-95ab-da8518210c0a-2666da7f-cd19-4eb3-ba7f-9380f762b718",
+      "source": "d86279cf-a3fb-41ff-95ab-da8518210c0a",
+      "target": "2666da7f-cd19-4eb3-ba7f-9380f762b718"
+    },
+    {
+      "id": "xy-edge__d86279cf-a3fb-41ff-95ab-da8518210c0a-92f6e69f-cedd-433a-a4bb-9e626ca39ff4",
+      "source": "d86279cf-a3fb-41ff-95ab-da8518210c0a",
+      "target": "92f6e69f-cedd-433a-a4bb-9e626ca39ff4"
+    },
+    {
+      "id": "xy-edge__2666da7f-cd19-4eb3-ba7f-9380f762b718-92f6e69f-cedd-433a-a4bb-9e626ca39ff4",
+      "source": "2666da7f-cd19-4eb3-ba7f-9380f762b718",
+      "target": "92f6e69f-cedd-433a-a4bb-9e626ca39ff4"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

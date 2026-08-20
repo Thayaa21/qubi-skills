@@ -1,0 +1,177 @@
+{
+  "nodes": [
+    {
+      "id": "e846bc08-d72b-4bd8-a0b8-c63c699f7e16",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "a69c2cdc-858c-4eaf-85e0-1edb50f875b3",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Fraud Check",
+        "method": "POST",
+        "url": "https://api.example.com/fraud-check",
+        "saveOutputAs": "risk"
+      }
+    },
+    {
+      "id": "2d4210d3-7535-43e7-b692-bf2bad837c16",
+      "type": "Branch",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Fraud Risk Level",
+        "conditions": [
+          {
+            "expression": "risk.level == 'low'"
+          },
+          {
+            "expression": "risk.level == 'medium'"
+          },
+          {
+            "expression": "risk.level == 'high'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bed9592d-e973-47b1-ad63-6f2da2a80154",
+      "type": "Code",
+      "position": {
+        "x": 580,
+        "y": 60
+      },
+      "data": {
+        "type": "Code",
+        "name": "Fast Track",
+        "language": "javascript",
+        "code": "return 'fast_track';"
+      }
+    },
+    {
+      "id": "589bbe2d-c3a7-4f37-99e2-0b65ad93f76f",
+      "type": "HitlTask",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "HitlTask",
+        "name": "Standard Review",
+        "taskName": "Standard Review",
+        "taskType": "UNVERIFIED",
+        "assignTo": "UNVERIFIED"
+      }
+    },
+    {
+      "id": "a3dd6b48-ece6-42a9-a91f-e94e940ecb63",
+      "type": "HitlTask",
+      "position": {
+        "x": 580,
+        "y": 340
+      },
+      "data": {
+        "type": "HitlTask",
+        "name": "SIU Referral",
+        "taskName": "SIU Referral",
+        "taskType": "UNVERIFIED",
+        "assignTo": "UNVERIFIED"
+      }
+    },
+    {
+      "id": "c6a092d9-fc45-42c7-9bc2-bc94e90ab291",
+      "type": "Http",
+      "position": {
+        "x": 740,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Initiate Payment",
+        "method": "POST",
+        "url": "https://api.example.com/pay"
+      }
+    },
+    {
+      "id": "ec40f5d7-7241-404f-a169-757fa5519693",
+      "type": "End",
+      "position": {
+        "x": 900,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__e846bc08-d72b-4bd8-a0b8-c63c699f7e16-a69c2cdc-858c-4eaf-85e0-1edb50f875b3",
+      "source": "e846bc08-d72b-4bd8-a0b8-c63c699f7e16",
+      "target": "a69c2cdc-858c-4eaf-85e0-1edb50f875b3"
+    },
+    {
+      "id": "xy-edge__a69c2cdc-858c-4eaf-85e0-1edb50f875b3-2d4210d3-7535-43e7-b692-bf2bad837c16",
+      "source": "a69c2cdc-858c-4eaf-85e0-1edb50f875b3",
+      "target": "2d4210d3-7535-43e7-b692-bf2bad837c16"
+    },
+    {
+      "id": "xy-edge__2d4210d3-7535-43e7-b692-bf2bad837c16-bed9592d-e973-47b1-ad63-6f2da2a80154",
+      "source": "2d4210d3-7535-43e7-b692-bf2bad837c16",
+      "target": "bed9592d-e973-47b1-ad63-6f2da2a80154"
+    },
+    {
+      "id": "xy-edge__2d4210d3-7535-43e7-b692-bf2bad837c16-589bbe2d-c3a7-4f37-99e2-0b65ad93f76f",
+      "source": "2d4210d3-7535-43e7-b692-bf2bad837c16",
+      "target": "589bbe2d-c3a7-4f37-99e2-0b65ad93f76f"
+    },
+    {
+      "id": "xy-edge__2d4210d3-7535-43e7-b692-bf2bad837c16-a3dd6b48-ece6-42a9-a91f-e94e940ecb63",
+      "source": "2d4210d3-7535-43e7-b692-bf2bad837c16",
+      "target": "a3dd6b48-ece6-42a9-a91f-e94e940ecb63"
+    },
+    {
+      "id": "xy-edge__bed9592d-e973-47b1-ad63-6f2da2a80154-c6a092d9-fc45-42c7-9bc2-bc94e90ab291",
+      "source": "bed9592d-e973-47b1-ad63-6f2da2a80154",
+      "target": "c6a092d9-fc45-42c7-9bc2-bc94e90ab291"
+    },
+    {
+      "id": "xy-edge__589bbe2d-c3a7-4f37-99e2-0b65ad93f76f-c6a092d9-fc45-42c7-9bc2-bc94e90ab291",
+      "source": "589bbe2d-c3a7-4f37-99e2-0b65ad93f76f",
+      "target": "c6a092d9-fc45-42c7-9bc2-bc94e90ab291"
+    },
+    {
+      "id": "xy-edge__a3dd6b48-ece6-42a9-a91f-e94e940ecb63-c6a092d9-fc45-42c7-9bc2-bc94e90ab291",
+      "source": "a3dd6b48-ece6-42a9-a91f-e94e940ecb63",
+      "target": "c6a092d9-fc45-42c7-9bc2-bc94e90ab291"
+    },
+    {
+      "id": "xy-edge__c6a092d9-fc45-42c7-9bc2-bc94e90ab291-ec40f5d7-7241-404f-a169-757fa5519693",
+      "source": "c6a092d9-fc45-42c7-9bc2-bc94e90ab291",
+      "target": "ec40f5d7-7241-404f-a169-757fa5519693"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

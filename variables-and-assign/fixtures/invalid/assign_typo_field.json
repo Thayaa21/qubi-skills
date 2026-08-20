@@ -1,0 +1,64 @@
+{
+  "nodes": [
+    {
+      "id": "7151defa-5235-4b87-8129-805b492c6ca6",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "6f5649ca-ef88-44c7-b283-64612ae53111",
+      "type": "Assign",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Assign",
+        "name": "Bad Assign",
+        "assignmnets": [
+          {
+            "variable": "x",
+            "value": "1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "57c4fb46-cd3b-4cec-8cc6-8f8c23861d92",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__7151defa-5235-4b87-8129-805b492c6ca6-6f5649ca-ef88-44c7-b283-64612ae53111",
+      "source": "7151defa-5235-4b87-8129-805b492c6ca6",
+      "target": "6f5649ca-ef88-44c7-b283-64612ae53111"
+    },
+    {
+      "id": "xy-edge__6f5649ca-ef88-44c7-b283-64612ae53111-57c4fb46-cd3b-4cec-8cc6-8f8c23861d92",
+      "source": "6f5649ca-ef88-44c7-b283-64612ae53111",
+      "target": "57c4fb46-cd3b-4cec-8cc6-8f8c23861d92"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

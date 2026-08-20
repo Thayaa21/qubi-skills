@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "id": "5263f72e-293b-4091-ad5b-9ef387c54931",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "054cd196-9fee-456b-913c-cabef0ca610b",
+      "type": "DocumentAI",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "DocumentAI",
+        "name": "Process Claim Documents",
+        "operation": "UNVERIFIED",
+        "fileVariable": "filePath",
+        "saveOutputAs": "extractedData"
+      }
+    },
+    {
+      "id": "efbb6049-fe3d-45f3-b26f-f73ea9e496cb",
+      "type": "Agent",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Agent",
+        "name": "Verify Extraction",
+        "agentId": "00000000-0000-0000-0000-000000000000",
+        "systemPrompt": "You are an accounts payable assistant",
+        "userMessage": "Verify this extracted data: {{extractedData}}",
+        "saveOutputAs": "verification"
+      }
+    },
+    {
+      "id": "3a47c772-061c-4f03-adb4-0cc02efa55b7",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__5263f72e-293b-4091-ad5b-9ef387c54931-054cd196-9fee-456b-913c-cabef0ca610b",
+      "source": "5263f72e-293b-4091-ad5b-9ef387c54931",
+      "target": "054cd196-9fee-456b-913c-cabef0ca610b"
+    },
+    {
+      "id": "xy-edge__054cd196-9fee-456b-913c-cabef0ca610b-efbb6049-fe3d-45f3-b26f-f73ea9e496cb",
+      "source": "054cd196-9fee-456b-913c-cabef0ca610b",
+      "target": "efbb6049-fe3d-45f3-b26f-f73ea9e496cb"
+    },
+    {
+      "id": "xy-edge__efbb6049-fe3d-45f3-b26f-f73ea9e496cb-3a47c772-061c-4f03-adb4-0cc02efa55b7",
+      "source": "efbb6049-fe3d-45f3-b26f-f73ea9e496cb",
+      "target": "3a47c772-061c-4f03-adb4-0cc02efa55b7"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

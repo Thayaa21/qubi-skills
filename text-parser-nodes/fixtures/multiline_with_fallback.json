@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "id": "52605427-b118-4493-a86c-b19e9fd11773",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "6ed7bae9-1a80-4391-8326-66a7a2f44d36",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Log Block",
+        "method": "GET",
+        "url": "https://api.example.com/logs",
+        "saveOutputAs": "logText"
+      }
+    },
+    {
+      "id": "9698ce41-e3a6-4008-a752-483e87037d13",
+      "type": "TextParser",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "TextParser",
+        "name": "Extract Error Code",
+        "regexPattern": "ERROR:\\s*(\\w+)",
+        "input": {
+          "source": "logText"
+        },
+        "multiline": true,
+        "singleline": false,
+        "trimOutput": true,
+        "fallbackValue": "UNKNOWN",
+        "outputMappings": [
+          {
+            "group": 1,
+            "variable": "errorCode"
+          }
+        ]
+      }
+    },
+    {
+      "id": "e759a981-be81-476f-b29d-6733b4917b87",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__52605427-b118-4493-a86c-b19e9fd11773-6ed7bae9-1a80-4391-8326-66a7a2f44d36",
+      "source": "52605427-b118-4493-a86c-b19e9fd11773",
+      "target": "6ed7bae9-1a80-4391-8326-66a7a2f44d36"
+    },
+    {
+      "id": "xy-edge__6ed7bae9-1a80-4391-8326-66a7a2f44d36-9698ce41-e3a6-4008-a752-483e87037d13",
+      "source": "6ed7bae9-1a80-4391-8326-66a7a2f44d36",
+      "target": "9698ce41-e3a6-4008-a752-483e87037d13"
+    },
+    {
+      "id": "xy-edge__9698ce41-e3a6-4008-a752-483e87037d13-e759a981-be81-476f-b29d-6733b4917b87",
+      "source": "9698ce41-e3a6-4008-a752-483e87037d13",
+      "target": "e759a981-be81-476f-b29d-6733b4917b87"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

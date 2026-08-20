@@ -1,0 +1,132 @@
+{
+  "nodes": [
+    {
+      "id": "d4040087-1578-47b9-a638-1ece6d1bafaa",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "83eac6b0-a179-4d77-8c58-93ad1d14c147",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Fetch Order",
+        "method": "GET",
+        "url": "https://api.example.com/orders/1",
+        "saveOutputAs": "orderResult"
+      }
+    },
+    {
+      "id": "b8f56ec6-6662-43f0-82c0-ac212d349617",
+      "type": "Branch",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Fetch Succeeded?",
+        "conditions": [
+          {
+            "expression": "orderResult.error == null"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8e0795f4-99be-4a6c-8b79-153ce13ca911",
+      "type": "Code",
+      "position": {
+        "x": 580,
+        "y": 100
+      },
+      "data": {
+        "type": "Code",
+        "name": "Process Order",
+        "language": "javascript",
+        "code": "return JSON.parse(input).total;",
+        "input": {
+          "source": "orderResult"
+        }
+      }
+    },
+    {
+      "id": "22983779-ccee-4002-8d34-e53f64f655f9",
+      "type": "Code",
+      "position": {
+        "x": 580,
+        "y": 300
+      },
+      "data": {
+        "type": "Code",
+        "name": "Log Fetch Error",
+        "language": "javascript",
+        "code": "console.error(input);",
+        "input": {
+          "source": "orderResult"
+        }
+      }
+    },
+    {
+      "id": "dc9b95eb-8a94-47a9-8e34-c65dbac0df46",
+      "type": "End",
+      "position": {
+        "x": 740,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__d4040087-1578-47b9-a638-1ece6d1bafaa-83eac6b0-a179-4d77-8c58-93ad1d14c147",
+      "source": "d4040087-1578-47b9-a638-1ece6d1bafaa",
+      "target": "83eac6b0-a179-4d77-8c58-93ad1d14c147"
+    },
+    {
+      "id": "xy-edge__83eac6b0-a179-4d77-8c58-93ad1d14c147-b8f56ec6-6662-43f0-82c0-ac212d349617",
+      "source": "83eac6b0-a179-4d77-8c58-93ad1d14c147",
+      "target": "b8f56ec6-6662-43f0-82c0-ac212d349617"
+    },
+    {
+      "id": "xy-edge__b8f56ec6-6662-43f0-82c0-ac212d349617-8e0795f4-99be-4a6c-8b79-153ce13ca911",
+      "source": "b8f56ec6-6662-43f0-82c0-ac212d349617",
+      "target": "8e0795f4-99be-4a6c-8b79-153ce13ca911"
+    },
+    {
+      "id": "xy-edge__b8f56ec6-6662-43f0-82c0-ac212d349617-22983779-ccee-4002-8d34-e53f64f655f9",
+      "source": "b8f56ec6-6662-43f0-82c0-ac212d349617",
+      "target": "22983779-ccee-4002-8d34-e53f64f655f9"
+    },
+    {
+      "id": "xy-edge__8e0795f4-99be-4a6c-8b79-153ce13ca911-dc9b95eb-8a94-47a9-8e34-c65dbac0df46",
+      "source": "8e0795f4-99be-4a6c-8b79-153ce13ca911",
+      "target": "dc9b95eb-8a94-47a9-8e34-c65dbac0df46"
+    },
+    {
+      "id": "xy-edge__22983779-ccee-4002-8d34-e53f64f655f9-dc9b95eb-8a94-47a9-8e34-c65dbac0df46",
+      "source": "22983779-ccee-4002-8d34-e53f64f655f9",
+      "target": "dc9b95eb-8a94-47a9-8e34-c65dbac0df46"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

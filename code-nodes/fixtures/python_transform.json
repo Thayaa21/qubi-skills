@@ -1,0 +1,61 @@
+{
+  "nodes": [
+    {
+      "id": "eba27b5f-6d67-4809-b3a4-f9503d2a4597",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "778d7a6b-821b-4274-9230-34590c344101",
+      "type": "Code",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Code",
+        "name": "Calculate Total",
+        "language": "python",
+        "code": "return input['subtotal'] + input['tax']",
+        "saveOutputAs": "total"
+      }
+    },
+    {
+      "id": "214db5bd-df20-4c27-a1bb-646424b3ead3",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__eba27b5f-6d67-4809-b3a4-f9503d2a4597-778d7a6b-821b-4274-9230-34590c344101",
+      "source": "eba27b5f-6d67-4809-b3a4-f9503d2a4597",
+      "target": "778d7a6b-821b-4274-9230-34590c344101"
+    },
+    {
+      "id": "xy-edge__778d7a6b-821b-4274-9230-34590c344101-214db5bd-df20-4c27-a1bb-646424b3ead3",
+      "source": "778d7a6b-821b-4274-9230-34590c344101",
+      "target": "214db5bd-df20-4c27-a1bb-646424b3ead3"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

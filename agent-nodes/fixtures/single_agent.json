@@ -1,0 +1,62 @@
+{
+  "nodes": [
+    {
+      "id": "a1391288-15ac-42ba-880f-155286ad91c5",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "b7eb0ace-31a0-40bf-b0d9-5a6983c79d62",
+      "type": "Agent",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Agent",
+        "name": "Generate Summary",
+        "agentId": "00000000-0000-0000-0000-000000000000",
+        "systemPrompt": "You are a summarizer",
+        "userMessage": "Summarize this text",
+        "saveOutputAs": "summary"
+      }
+    },
+    {
+      "id": "009e2fd0-9307-40c6-9ce5-35d09533fdc0",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__a1391288-15ac-42ba-880f-155286ad91c5-b7eb0ace-31a0-40bf-b0d9-5a6983c79d62",
+      "source": "a1391288-15ac-42ba-880f-155286ad91c5",
+      "target": "b7eb0ace-31a0-40bf-b0d9-5a6983c79d62"
+    },
+    {
+      "id": "xy-edge__b7eb0ace-31a0-40bf-b0d9-5a6983c79d62-009e2fd0-9307-40c6-9ce5-35d09533fdc0",
+      "source": "b7eb0ace-31a0-40bf-b0d9-5a6983c79d62",
+      "target": "009e2fd0-9307-40c6-9ce5-35d09533fdc0"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

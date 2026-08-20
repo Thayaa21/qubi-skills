@@ -1,0 +1,89 @@
+{
+  "nodes": [
+    {
+      "id": "7842638e-e6ab-4888-8f04-8ef1967fbc49",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "19b5a399-cdd4-41e7-95e0-4549fc3979d5",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Get Latest Email",
+        "method": "GET",
+        "url": "https://api.example.com/emails/latest",
+        "saveOutputAs": "emailBody"
+      }
+    },
+    {
+      "id": "460c2d08-8c80-4a7f-935e-5c5a9381f4f6",
+      "type": "TextParser",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "TextParser",
+        "name": "Extract PO Number",
+        "regexPattern": "PO[- ]?(\\d{6,8})",
+        "input": {
+          "source": "emailBody"
+        },
+        "ignoreCase": true,
+        "outputMappings": [
+          {
+            "group": 1,
+            "variable": "poNumber"
+          }
+        ]
+      }
+    },
+    {
+      "id": "c33ddeb3-0004-4184-b83e-49c86b187cf0",
+      "type": "End",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__7842638e-e6ab-4888-8f04-8ef1967fbc49-19b5a399-cdd4-41e7-95e0-4549fc3979d5",
+      "source": "7842638e-e6ab-4888-8f04-8ef1967fbc49",
+      "target": "19b5a399-cdd4-41e7-95e0-4549fc3979d5"
+    },
+    {
+      "id": "xy-edge__19b5a399-cdd4-41e7-95e0-4549fc3979d5-460c2d08-8c80-4a7f-935e-5c5a9381f4f6",
+      "source": "19b5a399-cdd4-41e7-95e0-4549fc3979d5",
+      "target": "460c2d08-8c80-4a7f-935e-5c5a9381f4f6"
+    },
+    {
+      "id": "xy-edge__460c2d08-8c80-4a7f-935e-5c5a9381f4f6-c33ddeb3-0004-4184-b83e-49c86b187cf0",
+      "source": "460c2d08-8c80-4a7f-935e-5c5a9381f4f6",
+      "target": "c33ddeb3-0004-4184-b83e-49c86b187cf0"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

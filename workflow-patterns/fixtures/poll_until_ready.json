@@ -1,0 +1,128 @@
+{
+  "nodes": [
+    {
+      "id": "7869f28e-89ab-4866-8cf9-e6b6537c6082",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "f53bf9bb-9579-47a6-a9e9-f1f30eca9b71",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Check Job Status",
+        "method": "GET",
+        "url": "https://api.example.com/jobs/1/status",
+        "saveOutputAs": "status1"
+      }
+    },
+    {
+      "id": "19ee22f7-cbfc-42b8-b24a-1b5eefe1ea07",
+      "type": "Branch",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "Ready?",
+        "conditions": [
+          {
+            "expression": "status1.state == 'done'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "635ad41b-2b0e-44f2-b232-c9a0e2f0f861",
+      "type": "Http",
+      "position": {
+        "x": 580,
+        "y": 340
+      },
+      "data": {
+        "type": "Http",
+        "name": "Check Job Status Again",
+        "method": "GET",
+        "url": "https://api.example.com/jobs/1/status",
+        "saveOutputAs": "status2"
+      }
+    },
+    {
+      "id": "daaa928b-e69b-4402-ae10-c13a6ee98c4c",
+      "type": "HitlTask",
+      "position": {
+        "x": 740,
+        "y": 340
+      },
+      "data": {
+        "type": "HitlTask",
+        "name": "Escalate: Job Still Pending",
+        "taskName": "Job Timeout Review",
+        "taskType": "UNVERIFIED",
+        "assignTo": "UNVERIFIED"
+      }
+    },
+    {
+      "id": "5628ffea-baf2-4b96-ad26-32a340206a45",
+      "type": "End",
+      "position": {
+        "x": 900,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__7869f28e-89ab-4866-8cf9-e6b6537c6082-f53bf9bb-9579-47a6-a9e9-f1f30eca9b71",
+      "source": "7869f28e-89ab-4866-8cf9-e6b6537c6082",
+      "target": "f53bf9bb-9579-47a6-a9e9-f1f30eca9b71"
+    },
+    {
+      "id": "xy-edge__f53bf9bb-9579-47a6-a9e9-f1f30eca9b71-19ee22f7-cbfc-42b8-b24a-1b5eefe1ea07",
+      "source": "f53bf9bb-9579-47a6-a9e9-f1f30eca9b71",
+      "target": "19ee22f7-cbfc-42b8-b24a-1b5eefe1ea07"
+    },
+    {
+      "id": "xy-edge__19ee22f7-cbfc-42b8-b24a-1b5eefe1ea07-5628ffea-baf2-4b96-ad26-32a340206a45",
+      "source": "19ee22f7-cbfc-42b8-b24a-1b5eefe1ea07",
+      "target": "5628ffea-baf2-4b96-ad26-32a340206a45"
+    },
+    {
+      "id": "xy-edge__19ee22f7-cbfc-42b8-b24a-1b5eefe1ea07-635ad41b-2b0e-44f2-b232-c9a0e2f0f861",
+      "source": "19ee22f7-cbfc-42b8-b24a-1b5eefe1ea07",
+      "target": "635ad41b-2b0e-44f2-b232-c9a0e2f0f861"
+    },
+    {
+      "id": "xy-edge__635ad41b-2b0e-44f2-b232-c9a0e2f0f861-daaa928b-e69b-4402-ae10-c13a6ee98c4c",
+      "source": "635ad41b-2b0e-44f2-b232-c9a0e2f0f861",
+      "target": "daaa928b-e69b-4402-ae10-c13a6ee98c4c"
+    },
+    {
+      "id": "xy-edge__daaa928b-e69b-4402-ae10-c13a6ee98c4c-5628ffea-baf2-4b96-ad26-32a340206a45",
+      "source": "daaa928b-e69b-4402-ae10-c13a6ee98c4c",
+      "target": "5628ffea-baf2-4b96-ad26-32a340206a45"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

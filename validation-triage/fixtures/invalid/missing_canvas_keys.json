@@ -1,0 +1,35 @@
+{
+  "nodes": [
+    {
+      "id": "aa556a77-e03c-42d2-9c3d-b3247c727f91",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "5eb213b7-7d21-417f-918b-02b3296d95a7",
+      "type": "End",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__aa556a77-e03c-42d2-9c3d-b3247c727f91-5eb213b7-7d21-417f-918b-02b3296d95a7",
+      "source": "aa556a77-e03c-42d2-9c3d-b3247c727f91",
+      "target": "5eb213b7-7d21-417f-918b-02b3296d95a7"
+    }
+  ]
+}

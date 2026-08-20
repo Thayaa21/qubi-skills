@@ -1,0 +1,55 @@
+{
+  "nodes": [
+    {
+      "id": "4a84c0c4-eef0-45dd-acb1-e039a6bbfcdf",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "2e1882d9-fd37-4e21-8155-4a664a026c17",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Dead End Branch",
+        "method": "GET",
+        "url": "https://api.example.com"
+      }
+    },
+    {
+      "id": "5bed6d4c-4432-42c9-aa14-adef9d603d5c",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__4a84c0c4-eef0-45dd-acb1-e039a6bbfcdf-2e1882d9-fd37-4e21-8155-4a664a026c17",
+      "source": "4a84c0c4-eef0-45dd-acb1-e039a6bbfcdf",
+      "target": "2e1882d9-fd37-4e21-8155-4a664a026c17"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

@@ -1,0 +1,55 @@
+{
+  "nodes": [
+    {
+      "id": "95300842-77ee-490e-bb9c-1075272038fc",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "945c23f2-4d97-413b-a3e0-40aa326eabaa",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Fetch Data",
+        "method": "GET",
+        "url": "https://api.example.com/data"
+      }
+    },
+    {
+      "id": "6de2c0fd-65e7-476f-8a4a-cb431ac48d70",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__945c23f2-4d97-413b-a3e0-40aa326eabaa-6de2c0fd-65e7-476f-8a4a-cb431ac48d70",
+      "source": "945c23f2-4d97-413b-a3e0-40aa326eabaa",
+      "target": "6de2c0fd-65e7-476f-8a4a-cb431ac48d70"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

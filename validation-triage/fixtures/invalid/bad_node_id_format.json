@@ -1,0 +1,60 @@
+{
+  "nodes": [
+    {
+      "id": "c888494c-8098-448f-87d9-6afee3803c5f",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "not-a-uuid",
+      "type": "Http",
+      "position": {
+        "x": 300,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Bad Id",
+        "method": "GET",
+        "url": "https://api.example.com"
+      }
+    },
+    {
+      "id": "4527549a-d15f-40ec-b64c-3ccb389864d5",
+      "type": "End",
+      "position": {
+        "x": 500,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__c888494c-8098-448f-87d9-6afee3803c5f-not-a-uuid",
+      "source": "c888494c-8098-448f-87d9-6afee3803c5f",
+      "target": "not-a-uuid"
+    },
+    {
+      "id": "xy-edge__x-y",
+      "source": "not-a-uuid",
+      "target": "4527549a-d15f-40ec-b64c-3ccb389864d5"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

@@ -1,0 +1,121 @@
+{
+  "nodes": [
+    {
+      "id": "6984d4d9-5c07-4c38-98ec-4de0dabc8b4f",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "f62873e1-7c28-4898-a70f-a3ee4a65f642",
+      "type": "Http",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Http",
+        "name": "Check",
+        "method": "GET",
+        "url": "https://api.example.com/check",
+        "saveOutputAs": "ok"
+      }
+    },
+    {
+      "id": "d59cbcc3-7cfa-4d3d-a1cb-ee4cadc4d9a7",
+      "type": "Branch",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Branch",
+        "name": "OK?",
+        "conditions": [
+          {
+            "expression": "ok == true"
+          }
+        ]
+      }
+    },
+    {
+      "id": "cdb7ef7d-dc93-40d0-90d3-7bd922dfe80f",
+      "type": "Http",
+      "position": {
+        "x": 580,
+        "y": 100
+      },
+      "data": {
+        "type": "Http",
+        "name": "Continue",
+        "method": "POST",
+        "url": "https://api.example.com/continue"
+      }
+    },
+    {
+      "id": "64312e04-d4bf-4a25-8efb-119288d51717",
+      "type": "Code",
+      "position": {
+        "x": 580,
+        "y": 300
+      },
+      "data": {
+        "type": "Code",
+        "name": "Log Only",
+        "language": "javascript",
+        "code": "console.log('bad');"
+      }
+    },
+    {
+      "id": "b09112d0-97a7-4c0d-8657-8cf67a83e6e2",
+      "type": "End",
+      "position": {
+        "x": 740,
+        "y": 100
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__6984d4d9-5c07-4c38-98ec-4de0dabc8b4f-f62873e1-7c28-4898-a70f-a3ee4a65f642",
+      "source": "6984d4d9-5c07-4c38-98ec-4de0dabc8b4f",
+      "target": "f62873e1-7c28-4898-a70f-a3ee4a65f642"
+    },
+    {
+      "id": "xy-edge__f62873e1-7c28-4898-a70f-a3ee4a65f642-d59cbcc3-7cfa-4d3d-a1cb-ee4cadc4d9a7",
+      "source": "f62873e1-7c28-4898-a70f-a3ee4a65f642",
+      "target": "d59cbcc3-7cfa-4d3d-a1cb-ee4cadc4d9a7"
+    },
+    {
+      "id": "xy-edge__d59cbcc3-7cfa-4d3d-a1cb-ee4cadc4d9a7-cdb7ef7d-dc93-40d0-90d3-7bd922dfe80f",
+      "source": "d59cbcc3-7cfa-4d3d-a1cb-ee4cadc4d9a7",
+      "target": "cdb7ef7d-dc93-40d0-90d3-7bd922dfe80f"
+    },
+    {
+      "id": "xy-edge__d59cbcc3-7cfa-4d3d-a1cb-ee4cadc4d9a7-64312e04-d4bf-4a25-8efb-119288d51717",
+      "source": "d59cbcc3-7cfa-4d3d-a1cb-ee4cadc4d9a7",
+      "target": "64312e04-d4bf-4a25-8efb-119288d51717"
+    },
+    {
+      "id": "xy-edge__cdb7ef7d-dc93-40d0-90d3-7bd922dfe80f-b09112d0-97a7-4c0d-8657-8cf67a83e6e2",
+      "source": "cdb7ef7d-dc93-40d0-90d3-7bd922dfe80f",
+      "target": "b09112d0-97a7-4c0d-8657-8cf67a83e6e2"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}

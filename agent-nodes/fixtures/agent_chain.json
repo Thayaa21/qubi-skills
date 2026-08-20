@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "id": "2f1055c6-c30d-40d3-b11e-b41b0e7365a1",
+      "type": "Start",
+      "position": {
+        "x": 100,
+        "y": 200
+      },
+      "data": {
+        "type": "Start",
+        "name": "Start"
+      }
+    },
+    {
+      "id": "e31d2fd0-903e-4f75-b496-e9b9efcca1f4",
+      "type": "Agent",
+      "position": {
+        "x": 260,
+        "y": 200
+      },
+      "data": {
+        "type": "Agent",
+        "name": "Research",
+        "agentId": "00000000-0000-0000-0000-000000000000",
+        "systemPrompt": "You are a research assistant",
+        "userMessage": "Research the top 3 competitors",
+        "saveOutputAs": "research"
+      }
+    },
+    {
+      "id": "bf71aaf5-4b25-439b-927f-c2c9809090a8",
+      "type": "Agent",
+      "position": {
+        "x": 420,
+        "y": 200
+      },
+      "data": {
+        "type": "Agent",
+        "name": "Strategize",
+        "agentId": "00000000-0000-0000-0000-000000000000",
+        "systemPrompt": "You are a strategy consultant",
+        "userMessage": "Based on this research, suggest differentiators: {{research}}",
+        "saveOutputAs": "strategy"
+      }
+    },
+    {
+      "id": "063eeba6-d538-4f8e-a9fe-b08bccb6a537",
+      "type": "Agent",
+      "position": {
+        "x": 580,
+        "y": 200
+      },
+      "data": {
+        "type": "Agent",
+        "name": "Write Copy",
+        "agentId": "00000000-0000-0000-0000-000000000000",
+        "systemPrompt": "You are a copywriter",
+        "userMessage": "Write marketing copy for: {{strategy}}",
+        "saveOutputAs": "marketingCopy"
+      }
+    },
+    {
+      "id": "5fa998bf-7969-4bf7-923a-48c23f70aa68",
+      "type": "End",
+      "position": {
+        "x": 740,
+        "y": 200
+      },
+      "data": {
+        "type": "End",
+        "name": "End"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "xy-edge__2f1055c6-c30d-40d3-b11e-b41b0e7365a1-e31d2fd0-903e-4f75-b496-e9b9efcca1f4",
+      "source": "2f1055c6-c30d-40d3-b11e-b41b0e7365a1",
+      "target": "e31d2fd0-903e-4f75-b496-e9b9efcca1f4"
+    },
+    {
+      "id": "xy-edge__e31d2fd0-903e-4f75-b496-e9b9efcca1f4-bf71aaf5-4b25-439b-927f-c2c9809090a8",
+      "source": "e31d2fd0-903e-4f75-b496-e9b9efcca1f4",
+      "target": "bf71aaf5-4b25-439b-927f-c2c9809090a8"
+    },
+    {
+      "id": "xy-edge__bf71aaf5-4b25-439b-927f-c2c9809090a8-063eeba6-d538-4f8e-a9fe-b08bccb6a537",
+      "source": "bf71aaf5-4b25-439b-927f-c2c9809090a8",
+      "target": "063eeba6-d538-4f8e-a9fe-b08bccb6a537"
+    },
+    {
+      "id": "xy-edge__063eeba6-d538-4f8e-a9fe-b08bccb6a537-5fa998bf-7969-4bf7-923a-48c23f70aa68",
+      "source": "063eeba6-d538-4f8e-a9fe-b08bccb6a537",
+      "target": "5fa998bf-7969-4bf7-923a-48c23f70aa68"
+    }
+  ],
+  "viewport": {
+    "x": 0,
+    "y": 0,
+    "zoom": 1
+  },
+  "executionMode": "Sequential"
+}
