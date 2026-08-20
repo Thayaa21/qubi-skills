@@ -1,6 +1,6 @@
 # Validation Error Handling
 
-When `qcli flow validate <file>` reports errors or warnings, use this guide to fix them.
+When `qubi flow validate <file>` reports errors or warnings, use this guide to fix them.
 
 **Errors** set `valid: false` and exit code 1 — `flow save` refuses to proceed past
 them (without `--skip-validate`). **Warnings** don't fail the exit code, but mean
@@ -100,10 +100,10 @@ still required, so check [schema-reference.md](./schema-reference.md).
 **Fix:** Check [schema-reference.md](./schema-reference.md) for which fields are required per node type and add the missing one.
 
 Common missing fields:
-- Agent: `agentId` — run `qcli agents list` to get one
+- Agent: `agentId` — run `qubi agents list` to get one
 - Http: `method` and `url`
 - Code: `language` and `code`
-- RPA: `automationId` — run `qcli rpa list` to get one
+- RPA: `automationId` — run `qubi rpa list` to get one
 - HitlTask: `taskName`, `taskType`, `assignTo`
 - TextParser: `regexPattern`
 
@@ -153,7 +153,7 @@ options in the platform's Method dropdown.)
 
 ### FILE_NOT_FOUND
 
-**Meaning:** The path passed to `qcli flow validate` doesn't exist.
+**Meaning:** The path passed to `qubi flow validate` doesn't exist.
 
 **Fix:** Check the path/filename.
 
@@ -276,7 +276,7 @@ Re-validate after each batch. Stop only when both `error_count` and
 
 For machine-readable errors:
 ```bash
-qcli flow validate workflow.json --json-output
+qubi flow validate workflow.json --json-output
 ```
 
 Shape:

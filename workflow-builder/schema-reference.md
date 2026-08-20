@@ -79,7 +79,7 @@ Calls an AI agent (LLM).
 | Field | Required | Description |
 |-------|----------|-------------|
 | name | yes | Display name |
-| agentId | yes | UUID — get from `qcli agents list` |
+| agentId | yes | UUID — get from `qubi agents list` |
 | systemPrompt | no | System instruction for the agent |
 | userMessage | no | User prompt (supports `{{vars}}`) |
 | saveOutputAs | no | Variable to store output |
@@ -223,7 +223,7 @@ Triggers an RPA automation.
 | Field | Required | Description |
 |-------|----------|-------------|
 | name | yes | Display name |
-| automationId | yes | UUID — get from `qcli rpa list` |
+| automationId | yes | UUID — get from `qubi rpa list` |
 | saveOutputAs | no | Variable to store result |
 
 ---

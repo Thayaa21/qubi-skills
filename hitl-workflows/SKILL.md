@@ -21,7 +21,7 @@ qubi has two human-in-the-loop node types, and they are easy to confuse: `Hitl` 
 
 - The user asks for an approval step, a review step, a human sign-off, or "someone needs to check this first"
 - A workflow design mentions escalation, manager approval, or assigning work to a person or group
-- `qcli flow validate` reports a problem on a `Hitl` or `HitlTask` node
+- `qubi flow validate` reports a problem on a `Hitl` or `HitlTask` node
 
 ## Node reference
 
@@ -67,7 +67,7 @@ A `HitlTask` almost always feeds a `Branch` reading its `saveOutputAs` value. Bo
 ## Phase 4: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 `MISSING_REQUIRED_FIELD` on a HitlTask node almost always means `taskName`, `taskType`, or `assignTo` was left out -- see [fixtures/invalid/hitltask_missing_assignto.json](fixtures/invalid/hitltask_missing_assignto.json).

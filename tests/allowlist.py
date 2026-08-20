@@ -27,7 +27,7 @@ NON_FIELD_UNKNOWNS = [
     ("UV-RUNTIME-01", "{{variable}} interpolation semantics at runtime",
      "No local interpreter; the validator never evaluates templates",
      "Run a flow that interpolates a saved variable and read the job output"),
-    ("UV-RUNTIME-02", "Whether `qcli flow run` actually executes a workflow",
+    ("UV-RUNTIME-02", "Whether `qubi flow run` actually executes a workflow",
      "Both REST endpoints and the SignalR hub are unreachable offline",
      "Run any saved workflow and confirm a job id comes back"),
     ("UV-HITL-01", "Whether a Hitl node contains or merely precedes HitlTask nodes",

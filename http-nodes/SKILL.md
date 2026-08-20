@@ -14,7 +14,7 @@ description: "Call external APIs from qubi Agentic Flows with Http nodes -- the 
 ## When to invoke
 
 - The user's workflow calls an external API
-- `qcli flow validate` reports `INVALID_HTTP_METHOD`
+- `qubi flow validate` reports `INVALID_HTTP_METHOD`
 
 ## Node reference
 
@@ -52,7 +52,7 @@ The plain case -- see [fixtures/get_then_parse.json](fixtures/get_then_parse.jso
 ## Phase 3: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 `HEAD` and `OPTIONS` both fail with `INVALID_HTTP_METHOD` -- see [fixtures/invalid/http_method_head.json](fixtures/invalid/http_method_head.json). A non-string `method` value also fails with `INVALID_HTTP_METHOD` rather than crashing -- see [fixtures/invalid/http_method_not_string.json](fixtures/invalid/http_method_not_string.json).

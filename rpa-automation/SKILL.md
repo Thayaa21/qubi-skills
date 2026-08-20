@@ -15,7 +15,7 @@ description: "Call an existing qubi RPA automation from an Agentic Flow. Use whe
 
 - The user's workflow needs to drive a desktop application, a legacy system without an API, or anything that requires a UI-level automation rather than an HTTP call
 - The user mentions RPA, desktop automation, or a legacy system integration
-- `qcli flow validate` reports `MISSING_REQUIRED_FIELD` on an `RPA` node
+- `qubi flow validate` reports `MISSING_REQUIRED_FIELD` on an `RPA` node
 
 ## Node reference
 
@@ -30,10 +30,10 @@ description: "Call an existing qubi RPA automation from an Agentic Flow. Use whe
 ## Phase 1: Discover the real automationId -- never invent one
 
 ```bash
-qcli rpa list
+qubi rpa list
 ```
 
-Present the results to the human and let them pick, the same way an `Agent` node's `agentId` is discovered via `qcli agents list`. There is no offline way to know which automations exist on a given tenant -- `automationId` is exactly as tenant-specific as `agentId`, and the designer dropdown for it was never captured (see Unverified).
+Present the results to the human and let them pick, the same way an `Agent` node's `agentId` is discovered via `qubi agents list`. There is no offline way to know which automations exist on a given tenant -- `automationId` is exactly as tenant-specific as `agentId`, and the designer dropdown for it was never captured (see Unverified).
 
 If you're building a fixture or example rather than a real workflow, use the sentinel `00000000-0000-0000-0000-000000000000` -- see [fixtures/rpa_single_step.json](fixtures/rpa_single_step.json) -- and say so explicitly rather than letting a plausible-looking fake id sit in the file.
 
@@ -44,7 +44,7 @@ RPA automations are often expensive or slow, so real workflows gate them behind 
 ## Phase 3: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 Missing `automationId` produces `MISSING_REQUIRED_FIELD` -- see [fixtures/invalid/rpa_no_automation_id.json](fixtures/invalid/rpa_no_automation_id.json).
@@ -53,12 +53,12 @@ Missing `automationId` produces `MISSING_REQUIRED_FIELD` -- see [fixtures/invali
 
 | ID | Claim | Why unverifiable offline | How to verify | Status |
 |----|-------|---------------------------|----------------|--------|
-| UV-RPA-01 | Whether `qcli rpa list` output includes enough detail to disambiguate automations with similar names | Requires a live authenticated session and real tenant data | Run `qcli rpa list -j` against a real tenant and inspect the fields returned | open |
+| UV-RPA-01 | Whether `qubi rpa list` output includes enough detail to disambiguate automations with similar names | Requires a live authenticated session and real tenant data | Run `qubi rpa list -j` against a real tenant and inspect the fields returned | open |
 
 ## Operating Rules
 
 **Always:**
-- Get `automationId` from `qcli rpa list`, present it to the human, let them pick
+- Get `automationId` from `qubi rpa list`, present it to the human, let them pick
 - Gate an RPA call behind a `Branch` if it's conditional or expensive
 - Use the all-zeros sentinel for any fixture/example, not a plausible-looking fake id
 

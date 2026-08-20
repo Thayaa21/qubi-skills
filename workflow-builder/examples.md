@@ -11,7 +11,7 @@ Start → Agent → End. Calls an AI agent to generate a random quote.
 <!-- UV-AGENT-01: agentId below is a real captured session value ("Hanif Test"
      agent, schema-extractor/output/captured_workflows.json), not invented --
      but agentIds are tenant-specific, so treat it as an example shape only.
-     Always get the real one for the human's tenant from `qcli agents list`. -->
+     Always get the real one for the human's tenant from `qubi agents list`. -->
 
 ```json
 {

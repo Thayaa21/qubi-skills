@@ -1,9 +1,9 @@
 ---
 name: qcli-troubleshooting
-description: "Fix qcli command failures -- authentication problems, Windows console crashes, flow run not actually running, no flow create. Use when a qcli command errors, hangs, or does something that doesn't match its printed output."
+description: "Fix qubi command failures -- authentication problems, Windows console crashes, flow run not actually running, no flow create. Use when a qubi command errors, hangs, or does something that doesn't match its printed output."
 ---
 
-# qcli Troubleshooting
+# qubi Troubleshooting
 
 > [qubi-cli](../qubi-cli/SKILL.md) is the reference for *what a command does*. This skill is for *why it just failed*, or worse, why it claimed to succeed when it didn't.
 
@@ -13,7 +13,7 @@ A distinct trigger from `qubi-cli`: that skill answers "how do I run this comman
 
 ## When to invoke
 
-- A `qcli` command errors, hangs, or exits non-zero for an unclear reason
+- A `qubi` command errors, hangs, or exits non-zero for an unclear reason
 - The printed output doesn't match what actually happened (e.g. "Workflow started!" but nothing ran)
 - Login fails silently, or authenticated commands 401 after a login that appeared to succeed
 
@@ -23,28 +23,28 @@ A distinct trigger from `qubi-cli`: that skill answers "how do I run this comman
 
 ## Trap 2: Windows console crashes on Unicode output
 
-Before the offline validator was hardened, `qcli flow validate`/`flow save`/`login` printed raw `✓`/`✗`/`⚠`/`→` characters, which crash with `UnicodeEncodeError` on a default Windows `cmd.exe` (cp1252 encoding) before any output appears. The validator now detects console encoding support and falls back to `OK`/`X`/`!`/`->`. If you see a `UnicodeEncodeError` traceback instead of a validation report, the installed `qcli` predates that fix -- reinstall from the current branch.
+Before the offline validator was hardened, `qubi flow validate`/`flow save`/`login` printed raw `✓`/`✗`/`⚠`/`→` characters, which crash with `UnicodeEncodeError` on a default Windows `cmd.exe` (cp1252 encoding) before any output appears. The validator now detects console encoding support and falls back to `OK`/`X`/`!`/`->`. If you see a `UnicodeEncodeError` traceback instead of a validation report, the installed `qubi` predates that fix -- reinstall from the current branch.
 
 ## Trap 3: `flow save` requires a pre-existing workflow
 
-There is no `qcli flow create`. `flow save --workflow-id <id>` can only push to a workflow that already exists on the platform (created once, by hand, in the web UI). If `flow save` reports "workflow not found," the id is either wrong or refers to a workflow that was never created in the UI -- `qcli flow list` shows every workflow id that actually exists.
+There is no `qubi flow create`. `flow save --workflow-id <id>` can only push to a workflow that already exists on the platform (created once, by hand, in the web UI). If `flow save` reports "workflow not found," the id is either wrong or refers to a workflow that was never created in the UI -- `qubi flow list` shows every workflow id that actually exists.
 
 ## Trap 4: `--no-browser` login has a known cookie-scope limitation
 
-Direct API login (`qcli login --no-browser`) captures Identity Server session cookies, not AgentHub cookies -- so `qcli status` may report logged-in while `flow list`/`flow get`/etc. still 401. Prefer the default browser-based login; if debugging why it's stuck, use `qcli login --headed` to watch it happen instead of guessing.
+Direct API login (`qubi login --no-browser`) captures Identity Server session cookies, not AgentHub cookies -- so `qubi status` may report logged-in while `flow list`/`flow get`/etc. still 401. Prefer the default browser-based login; if debugging why it's stuck, use `qubi login --headed` to watch it happen instead of guessing.
 
 ## Diagnostic checklist
 
-1. `qcli status` -- confirms whether there's a session at all, and for whom
+1. `qubi status` -- confirms whether there's a session at all, and for whom
 2. Re-run the failing command with `-j`/`--json-output` where available -- structured output is easier to diagnose than the human-readable summary
-3. For login problems specifically: `qcli login --headed` to watch the browser automation live
+3. For login problems specifically: `qubi login --headed` to watch the browser automation live
 4. For `flow run`: read the raised error message, not just the exit code -- it now names which endpoints were tried
 
 ## Operating Rules
 
 **Always:**
-- Trust a non-zero exit code from `flow run` over a printed "started" message from an older qcli
-- Use `qcli flow list` to confirm a workflow id exists before assuming `flow save` is broken
+- Trust a non-zero exit code from `flow run` over a printed "started" message from an older qubi
+- Use `qubi flow list` to confirm a workflow id exists before assuming `flow save` is broken
 - Prefer default browser login over `--no-browser` unless there's a specific reason not to
 
 **Never:**

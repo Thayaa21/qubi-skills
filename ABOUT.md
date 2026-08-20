@@ -32,7 +32,7 @@ dropdown fields whose values can't be invented. An AI agent without guidance gue
 These skills encode the ground truth so an agent can:
 
 - Know which node types exist and what each requires
-- Write graphs that pass `qcli flow validate` with zero errors and zero warnings
+- Write graphs that pass `qubi flow validate` with zero errors and zero warnings
 - Follow the exact CLI command sequence to validate, save, and run a workflow
 - Discover platform resources (agent IDs, automation IDs) instead of fabricating them
 - Fix validation errors on its own using a documented error → fix mapping
@@ -97,7 +97,7 @@ descriptions is the auto-generated table in [README.md](README.md).
 `qubi-skill-authoring` (how to write a new skill that passes the harness).
 
 **CLI & diagnostics skills** — how to drive and debug the tool:
-`qubi-cli` (complete `qcli` command reference),
+`qubi-cli` (complete `qubi` command reference),
 `qcli-troubleshooting` (why a command failed or lied about succeeding),
 `validation-triage` (every validate error/warning code and its fix, in fix order).
 
@@ -105,7 +105,7 @@ descriptions is the auto-generated table in [README.md](README.md).
 
 Point an AI coding agent at the skill folders:
 
-- **Claude Code:** copy/symlink into `.claude/skills/`, or run `qcli skills install`
+- **Claude Code:** copy/symlink into `.claude/skills/`, or run `qubi skills install`
 - **Kiro:** reference in `.kiro/steering/`
 - **Others (Cursor, etc.):** load the skill folder as project context
 
@@ -115,8 +115,8 @@ topic they cover — keeping context focused.
 
 ## How it's tested
 
-A pytest harness in `tests/` checks every skill against the **real qcli validator**
-(from the sibling qcli project) at runtime:
+A pytest harness in `tests/` checks every skill against the **real qubi validator**
+(from the sibling qubi project) at runtime:
 
 - Every valid fixture must validate to 0 errors and 0 warnings
 - Every invalid fixture must produce exactly the diagnostic codes it claims
@@ -130,7 +130,7 @@ python -m pytest -q
 
 If the tests fail with "only N codes discovered" or "rejects description," the
 locally installed validator is **older than the skills expect** — update the sibling
-qcli checkout to the hardened version. The skills in this repo are written against
+qubi checkout to the hardened version. The skills in this repo are written against
 the hardened validator described in `README1.md`.
 
 ## How it fits with the other projects
@@ -141,16 +141,16 @@ in one workspace, they relate like this:
 | Project | What it is | Relationship to qubi-skills |
 |---------|-----------|-----------------------------|
 | **qubi-skills** (this repo) | Markdown skills + fixtures + test harness that teach an AI to build qubi workflows | The knowledge layer. Consumes the CLI/validator as its source of truth |
-| **qcli / qcli-web** (the CLI) | The `qcli` command-line tool — auth, `flow validate/save/get/list/run`, `agents list`, `rpa list`, and the offline schema validator (`qcli/schema.py`) | The runtime the skills drive and the truth source the tests validate against |
-| **qubi web platform** | The AgentHub web app where workflows live and run | The deployment target. `qcli flow save` pushes into a workflow that must already exist here |
+| **qubi / qcli-web** (the CLI) | The `qubi` command-line tool — auth, `flow validate/save/get/list/run`, `agents list`, `rpa list`, and the offline schema validator (`qcli/schema.py`) | The runtime the skills drive and the truth source the tests validate against |
+| **qubi web platform** | The AgentHub web app where workflows live and run | The deployment target. `qubi flow save` pushes into a workflow that must already exist here |
 
 **Direction of dependency:** skills depend on the CLI (for validation and truth),
 the CLI depends on the web platform (for auth and deploy). Nothing depends on the
 skills — they are the documentation/behavior layer on top.
 
-**A note on command naming:** skills consistently use `qcli` as the command name
+**A note on command naming:** skills consistently use `qubi` as the command name
 (matching the CLI project and the test harness). A locally installed binary may be
-exposed as `qubi` instead; if so, `qcli` and `qubi` refer to the same tool.
+exposed as `qubi` instead; if so, `qubi` and `qubi` refer to the same tool.
 
 ## Where to look next
 

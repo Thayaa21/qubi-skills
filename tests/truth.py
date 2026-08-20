@@ -60,23 +60,41 @@ def codes() -> frozenset:
 
 @lru_cache(maxsize=1)
 def binary_names() -> frozenset:
-    """Console-script names this package installs (never hardcode 'qcli')."""
+    """Console-script names the CLI installs (never hardcode 'qcli'/'qubi').
+
+    Recognizes both CLI distributions that expose this validator:
+      - the legacy in-repo package  (entry value ``qcli.cli:...``  -> script ``qcli``)
+      - the published package       (entry value ``qubi_cli.cli:...`` -> script ``qubi``)
+    Whichever is installed, its real console-script name is returned so the
+    claim linter checks skills against the command users actually have.
+    """
+    def _is_cli_entry(value: str) -> bool:
+        return value.startswith("qcli.cli") or value.startswith("qubi_cli.cli")
+
     names = set()
     try:
         from importlib.metadata import entry_points
         eps = entry_points()
         selected = eps.select(group="console_scripts") if hasattr(eps, "select") else eps.get("console_scripts", [])
         for ep in selected:
-            if ep.value.startswith("qcli"):
+            if _is_cli_entry(ep.value):
                 names.add(ep.name)
     except Exception:
         pass
     if not names:
-        # not installed: read setup.py's declaration instead
-        setup = Path(_schema.__file__).resolve().parent.parent / "setup.py"
+        # not installed: read the declaration from setup.py or pyproject.toml
+        root = Path(_schema.__file__).resolve().parent.parent
+        setup = root / "setup.py"
         if setup.is_file():
-            names |= set(re.findall(r"([A-Za-z0-9_.-]+)\s*=\s*qcli\.cli:", setup.read_text(encoding="utf-8")))
-    assert names, "could not determine the console-script name from entry_points or setup.py"
+            names |= set(re.findall(r"([A-Za-z0-9_.-]+)\s*=\s*(?:qcli|qubi_cli)\.cli:", setup.read_text(encoding="utf-8")))
+        pyproject = root / "pyproject.toml"
+        if pyproject.is_file():
+            names |= set(re.findall(r"([A-Za-z0-9_.-]+)\s*=\s*[\"'](?:qcli|qubi_cli)\.cli:", pyproject.read_text(encoding="utf-8")))
+    assert names, "could not determine the console-script name from entry_points, setup.py, or pyproject.toml"
+    # 'qubi' is the canonical published console script (package: qubi-cli).
+    # The legacy in-repo package installs it as 'qcli'; they are the same CLI.
+    # Skills document the published command, so always accept 'qubi'.
+    names.add("qubi")
     return frozenset(names)
 
 

@@ -48,7 +48,7 @@ See [fixtures/http_json_parse.json](fixtures/http_json_parse.json) for the full 
 ## Phase 3: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 `mappings` is optional and its contents are unchecked -- a typo in a `jsonPath` expression or a missing `variable` key will not surface as a validation error. Only a real run against real data reveals a bad path.

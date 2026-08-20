@@ -36,8 +36,8 @@ from tests.allowlist import NON_FIELD_UNKNOWNS  # noqa: E402
 from tests.conftest import skill_dirs  # noqa: E402
 
 FIELD_UNBLOCK = {
-    "agentId": "`qcli agents list` returning rows",
-    "automationId": "`qcli rpa list` returning rows",
+    "agentId": "`qubi agents list` returning rows",
+    "automationId": "`qubi rpa list` returning rows",
     "operation": "one look at the DocumentAI node in the designer",
     "taskType": "one look at the HitlTask node in the designer",
     "assignTo": "one look at the HitlTask node in the designer",
@@ -46,7 +46,7 @@ FIELD_UNBLOCK = {
 
 RUNTIME_UNBLOCK = {
     "UV-RUNTIME-01": "any authenticated session",
-    "UV-RUNTIME-02": "one successful `qcli flow run`",
+    "UV-RUNTIME-02": "one successful `qubi flow run`",
 }
 
 

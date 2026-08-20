@@ -5,7 +5,7 @@ description: "Write a new skill in this repo so it passes the fixture sweep and 
 
 # qubi Skill Authoring
 
-> Every skill in this repo is checked by a pytest harness that derives ground truth from the real qcli validator at runtime. This is the reference for passing it, not just for the house style.
+> Every skill in this repo is checked by a pytest harness that derives ground truth from the real qubi validator at runtime. This is the reference for passing it, not just for the house style.
 
 ## What this skill is
 
@@ -48,13 +48,13 @@ Required headings: an H1, a `> tagline` blockquote right after it, a `## When to
 Write and validate fixtures before writing the SKILL.md prose that references them. A fixture that validates 0/0 is proof the shape you're documenting actually works; prose written first is a hypothesis. Validate directly against the real validator while drafting:
 
 ```bash
-qcli flow validate my-skill/fixtures/example.json
+qubi flow validate my-skill/fixtures/example.json
 ```
 
 For an invalid fixture, run it and copy the exact codes it produces into `expected.json` -- don't guess the codes, read them:
 
 ```bash
-qcli flow validate my-skill/fixtures/invalid/example.json -j
+qubi flow validate my-skill/fixtures/invalid/example.json -j
 ```
 
 `expected.json` is checked by **exact set equality**, not subset -- list every code the fixture actually produces, no more, no fewer.
@@ -63,8 +63,8 @@ qcli flow validate my-skill/fixtures/invalid/example.json -j
 
 1. **Node types and casing** -- `Http` not `HTTP`, `Hitl` not `HITL`. Checked only inside fenced code blocks and inline `` `spans` `` -- prose is never scanned, so writing "you may need to branch the flow" is always safe.
 2. **Node `data` fields** -- every key in a node's `data` object must be in that type's required/optional set (plus envelope keys and designer-only round-trip keys like `measured`/`selected`). Catches invented fields.
-3. **Diagnostic codes** -- any all-caps underscored token (like `MISSING_START`), in an inline span or heading, must be a real code from `qcli.schema`. `tests/allowlist.py` exempts non-code tokens like environment variable names.
-4. **CLI commands and flags** -- every ``` ```bash ``` ``` invocation of the real console script is checked against the live click command tree (walked from the actual `qcli.cli` module, never regexed). This is what catches a wrong binary name or an invented flag.
+3. **Diagnostic codes** -- any all-caps underscored token (like `MISSING_START`), in an inline span or heading, must be a real code from `qubi.schema`. `tests/allowlist.py` exempts non-code tokens like environment variable names.
+4. **CLI commands and flags** -- every ``` ```bash ``` ``` invocation of the real console script is checked against the live click command tree (walked from the actual `qubi.cli` module, never regexed). This is what catches a wrong binary name or an invented flag.
 5. **Frontmatter** -- `name` matches the directory, is kebab-case, and is unique across the repo.
 6. **No confident assertion of an unverified value** -- `agentId`, `operation`, `automationId`, `taskType`, `assignTo`, `template` may only appear as the sentinel (`00000000-0000-0000-0000-000000000000` for ids, `UNVERIFIED` for enums), an obvious placeholder, or annotated with a `UV-...` id in the fenced block or the paragraph immediately above it. This is what stops an invented enum value like `"operation": "extract"` from sitting in the repo looking confirmed.
 
@@ -101,11 +101,11 @@ If it can't find the validator, it exits with an explicit install hint (`pip ins
 
 **Always:**
 - Build fixtures first, validate them directly, then write prose around what's proven to work
-- Copy diagnostic codes from an actual `qcli flow validate -j` run, never guess them
+- Copy diagnostic codes from an actual `qubi flow validate -j` run, never guess them
 - Run `tools/rollup_unverified.py` after adding or editing an `## Unverified` table
 - Make `name` in frontmatter equal the directory name
 
 **Never:**
 - State a value for `agentId`/`operation`/`automationId`/`taskType`/`assignTo`/`template` as if confirmed unless it really is
 - Hand-edit `UNVERIFIED.md` -- it's generated
-- Reference a CLI command or flag without checking it against `qcli --help` (or the real click tree) first
+- Reference a CLI command or flag without checking it against `qubi --help` (or the real click tree) first

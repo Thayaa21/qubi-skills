@@ -17,12 +17,12 @@ This table is generated from the skill directories -- see `tools/render_readme_t
 | **hitl-workflows** | Design human-in-the-loop steps in qubi Agentic Flows using Hitl and HitlTask nodes -- approval gates, escalation, task assignment |
 | **http-nodes** | Call external APIs from qubi Agentic Flows with Http nodes -- the five valid methods, headers, body, and URL interpolation |
 | **json-parser-nodes** | Extract fields from JSON responses in qubi Agentic Flows with JsonParser mappings |
-| **qcli-troubleshooting** | Fix qcli command failures -- authentication problems, Windows console crashes, flow run not actually running, no flow create |
-| **qubi-cli** | Complete CLI reference for the qcli command-line tool |
+| **qcli-troubleshooting** | Fix qubi command failures -- authentication problems, Windows console crashes, flow run not actually running, no flow create |
+| **qubi-cli** | Complete CLI reference for the qubi command-line tool |
 | **qubi-skill-authoring** | Write a new skill in this repo so it passes the fixture sweep and claim linter in tests/ |
 | **rpa-automation** | Call an existing qubi RPA automation from an Agentic Flow |
 | **text-parser-nodes** | Extract structured values from free text in qubi Agentic Flows with TextParser -- regex patterns, capture-group mappings, and fallbacks |
-| **validation-triage** | Diagnose and fix every qcli flow validate error and warning code, in fix order |
+| **validation-triage** | Diagnose and fix every qubi flow validate error and warning code, in fix order |
 | **variables-and-assign** | Move data between nodes in qubi Agentic Flows -- saveOutputAs, {{variable}} interpolation, the Assign node, and Input Source |
 | **workflow-builder** | Generate, validate, and deploy qubi Agentic Flows (JSON graph format) |
 | **workflow-optimizer** | Analyze existing qubi Agentic Flows workflows and suggest improvements — reduce steps, fix inefficiencies, add error handling, optimize data flow |
@@ -60,7 +60,7 @@ skill-name/
 
 ## Testing
 
-A pytest harness in `tests/` checks every skill against the real qcli validator (from the sibling `qcli-web` repo) at runtime: fixtures must validate cleanly, and every node type, field, diagnostic code, and CLI command/flag mentioned in a skill's markdown must actually exist.
+A pytest harness in `tests/` checks every skill against the real qubi validator (from the sibling `qcli-web` repo) at runtime: fixtures must validate cleanly, and every node type, field, diagnostic code, and CLI command/flag mentioned in a skill's markdown must actually exist.
 
 ```bash
 pip install -e ../qcli-web    # one-time, or set $QCLI_WEB to a checkout
@@ -72,7 +72,7 @@ See [qubi-skill-authoring/SKILL.md](qubi-skill-authoring/SKILL.md) for the full 
 ## Adding a New Skill
 
 1. Create a folder: `my-new-skill/`
-2. Build `fixtures/*.json` first, validated directly against `qcli flow validate` — fixtures are the proof, not an afterthought
+2. Build `fixtures/*.json` first, validated directly against `qubi flow validate` — fixtures are the proof, not an afterthought
 3. Write `SKILL.md`: what it does, when to invoke, phases, rules
 4. Run `python -m pytest -q -k my-new-skill` until green
 5. Run `python tools/render_readme_table.py` to add it to the table above

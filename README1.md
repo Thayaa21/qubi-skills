@@ -2,7 +2,7 @@
 
 This push adds two things to the `Rishi` branch:
 
-1. **`qcli-web/`** — the full qcli web-track project (Python CLI + skill files + tests),
+1. **`qcli-web/`** — the full qubi web-track project (Python CLI + skill files + tests),
    added as a new top-level folder. Nothing existing in this repo (`README.md`,
    `document-to-workflow/`, `workflow-builder/`, `workflow-optimizer/`) was deleted or
    overwritten.
@@ -12,7 +12,7 @@ This push adds two things to the `Rishi` branch:
 
 ## Why: the validator was passing broken graphs
 
-Before this push, `qcli/schema.py` (the offline validator behind `qcli flow validate`)
+Before this push, `qcli/schema.py` (the offline validator behind `qubi flow validate`)
 had real holes. Confirmed by direct testing:
 
 | Input | Before | After |
@@ -28,7 +28,7 @@ The worst one: the skill's hardest rule is *"never invent an agentId"* — and a
 with no `agentId` at all used to pass validation clean. The fix-and-retry loop the
 skill promises (write → validate → fix → retry) was giving false confidence.
 
-Also fixed: `qcli flow validate` and `qcli login` crashed with `UnicodeEncodeError`
+Also fixed: `qubi flow validate` and `qubi login` crashed with `UnicodeEncodeError`
 on a plain Windows console (cp1252), because they printed hardcoded `✓`/`✗` glyphs.
 They now fall back to `OK`/`X` when the console can't encode Unicode.
 
@@ -58,16 +58,16 @@ Run the tests: `cd qcli-web && pip install pytest && python -m pytest tests/ -v`
 - Dropped `HEAD`/`OPTIONS` from the allowed HTTP methods — the real designer's Method
   dropdown only offers `GET, POST, PUT, DELETE, PATCH`; `schema.py` and the skill both
   incorrectly allowed two more.
-- Added a warnings section: warnings don't fail `qcli flow validate`'s exit code, but
+- Added a warnings section: warnings don't fail `qubi flow validate`'s exit code, but
   the skill now explicitly says to treat them as must-fix before asking a human to save.
-- Added a "Phase 0" recommending `qcli flow get <id>` and editing that file, rather
+- Added a "Phase 0" recommending `qubi flow get <id>` and editing that file, rather
   than authoring a graph from scratch — the downloaded graph carries designer-only
   fields (`measured`, `selected`) that a hand-authored one won't have.
 
 ## Known limitations (unchanged, documented, not addressed by this push)
 
-- `qcli login --no-browser` doesn't complete the OAuth2 PKCE flow, so it authenticates
-  against the wrong host. The default browser-based `qcli login` works around it (use
+- `qubi login --no-browser` doesn't complete the OAuth2 PKCE flow, so it authenticates
+  against the wrong host. The default browser-based `qubi login` works around it (use
   `--headed` to watch it). See `qcli-web/docs/SDD.md` §12.1.
 - `flow run` / job-status endpoints are inferred, never confirmed against live traffic.
 - There is no `flow create` — `flow save` only writes into an existing workflow ID.

@@ -1,29 +1,29 @@
 ---
 name: validation-triage
-description: "Diagnose and fix every qcli flow validate error and warning code, in fix order. Use when validation failed, a downloaded workflow reports warnings, or you got a diagnostic code and don't know which skill owns it."
+description: "Diagnose and fix every qubi flow validate error and warning code, in fix order. Use when validation failed, a downloaded workflow reports warnings, or you got a diagnostic code and don't know which skill owns it."
 ---
 
 # Validation Triage
 
-> Every code `qcli flow validate` can emit, what it means, and how to fix it -- reachable whether or not you already know which skill built the graph.
+> Every code `qubi flow validate` can emit, what it means, and how to fix it -- reachable whether or not you already know which skill built the graph.
 
 ## What this skill is
 
-The other skills each own one node type or one design pattern, and each links to `qcli flow validate` as a final step. But the code catalog itself only had one home before this skill existed: buried inside `workflow-builder`, reachable only if that skill happened to be selected first. If someone downloads a workflow a colleague built and `qcli flow validate` reports `EDGE_ID_MISMATCH`, the right skill to reach for isn't "the one that builds workflows from scratch" -- it's this one.
+The other skills each own one node type or one design pattern, and each links to `qubi flow validate` as a final step. But the code catalog itself only had one home before this skill existed: buried inside `workflow-builder`, reachable only if that skill happened to be selected first. If someone downloads a workflow a colleague built and `qubi flow validate` reports `EDGE_ID_MISMATCH`, the right skill to reach for isn't "the one that builds workflows from scratch" -- it's this one.
 
 ## When to invoke
 
-- `qcli flow validate` printed an error or warning code and the fix isn't obvious
-- A downloaded workflow (`qcli flow get`) reports warnings
+- `qubi flow validate` printed an error or warning code and the fix isn't obvious
+- A downloaded workflow (`qubi flow get`) reports warnings
 - You want to know whether a code blocks `flow save` or not
 
 ## The severity contract
 
-**Errors** set `valid=False`, exit code 1, and block `qcli flow save`. **Warnings** don't fail the exit code and don't block `flow save` -- but treat them as must-fix. A workflow with `UNREACHABLE_NODE` renders as a disconnected island on the canvas and will never execute past the detachment point; qubi will happily save it anyway.
+**Errors** set `valid=False`, exit code 1, and block `qubi flow save`. **Warnings** don't fail the exit code and don't block `flow save` -- but treat them as must-fix. A workflow with `UNREACHABLE_NODE` renders as a disconnected island on the canvas and will never execute past the detachment point; qubi will happily save it anyway.
 
 ```bash
-qcli flow validate <file.json>              # human-readable
-qcli flow validate <file.json> -j           # machine-readable, for scripting a fix loop
+qubi flow validate <file.json>              # human-readable
+qubi flow validate <file.json> -j           # machine-readable, for scripting a fix loop
 ```
 
 ## Errors (block save)

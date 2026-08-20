@@ -9,7 +9,7 @@ that need one of these values use a documented sentinel
 (`00000000-0000-0000-0000-000000000000` for ids, `UNVERIFIED` for enums) rather
 than a plausible-looking fake, so `grep` finds every open row.
 
-## Unblocked by: `qcli agents list` returning rows
+## Unblocked by: `qubi agents list` returning rows
 
 - `UV-AGENT-01` (agent-nodes/SKILL.md) The example `agentId` in [workflow-builder/examples.md](../workflow-builder/examples.md) is real -- open
 
@@ -25,7 +25,7 @@ than a plausible-looking fake, so `grep` finds every open row.
 - `UV-HITL-01` (hitl-workflows/SKILL.md) Whether a `Hitl` node contains or merely precedes `HitlTask` nodes -- open
 - `UV-JSONPARSER-01` (json-parser-nodes/SKILL.md) Whether `jsonPath` supports the full JSONPath spec (filters, wildcards) or only simple dotted/indexed paths -- open
 - `UV-PATTERN-01` (workflow-patterns/SKILL.md) Whether fan-out branches (multiple edges out of one node) execute concurrently or sequentially -- open
-- `UV-RPA-01` (rpa-automation/SKILL.md) Whether `qcli rpa list` output includes enough detail to disambiguate automations with similar names -- open
+- `UV-RPA-01` (rpa-automation/SKILL.md) Whether `qubi rpa list` output includes enough detail to disambiguate automations with similar names -- open
 - `UV-TEXTPARSER-01` (text-parser-nodes/SKILL.md) The exact shape of `outputMappings` entries beyond `group`/`variable` -- open
 
 ## Unblocked by: one look at the DocumentAI node in the designer
@@ -38,6 +38,6 @@ than a plausible-looking fake, so `grep` finds every open row.
 - `UV-HITLTASK-02` (hitl-workflows/SKILL.md) `assignTo` accepts a user id, a group id, or both -- open
 - `UV-MYAREA-01` (qubi-skill-authoring/SKILL.md) `taskType` accepts a value like `approval` -- open
 
-## Unblocked by: one successful `qcli flow run`
+## Unblocked by: one successful `qubi flow run`
 
-- `UV-RUNTIME-02` (qubi-cli/SKILL.md) `qcli flow run` executes a workflow and returns a real job id -- open
+- `UV-RUNTIME-02` (qubi-cli/SKILL.md) `qubi flow run` executes a workflow and returns a real job id -- open

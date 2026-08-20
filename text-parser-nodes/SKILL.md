@@ -15,7 +15,7 @@ description: "Extract structured values from free text in qubi Agentic Flows wit
 
 - The user needs to pull a value out of unstructured text with a regex -- a PO number, an amount, an error code, a reference id
 - The user mentions capture groups, regex extraction, or parsing free text (as opposed to JSON)
-- `qcli flow validate` reports `MISSING_REQUIRED_FIELD` on a `TextParser` node
+- `qubi flow validate` reports `MISSING_REQUIRED_FIELD` on a `TextParser` node
 
 ## Node reference
 
@@ -62,7 +62,7 @@ See [fixtures/multiline_with_fallback.json](fixtures/multiline_with_fallback.jso
 ## Phase 3: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 Missing `regexPattern` produces `MISSING_REQUIRED_FIELD` -- see [fixtures/invalid/textparser_no_pattern.json](fixtures/invalid/textparser_no_pattern.json).

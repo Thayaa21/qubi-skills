@@ -19,7 +19,7 @@ description: "Add DocumentAI nodes to qubi Agentic Flows for OCR, extraction, an
 
 - The user's workflow processes a PDF, scanned document, image, or any uploaded file
 - The user mentions OCR, document extraction, or document classification
-- `qcli flow validate` reports `MISSING_REQUIRED_FIELD` on a `DocumentAI` node
+- `qubi flow validate` reports `MISSING_REQUIRED_FIELD` on a `DocumentAI` node
 
 ## Node reference
 
@@ -60,7 +60,7 @@ Do not write `"operation": "extract"` or any other specific-sounding string as i
 ## Phase 4: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 Leaving out `operation` produces `MISSING_REQUIRED_FIELD` -- see [fixtures/invalid/documentai_no_operation.json](fixtures/invalid/documentai_no_operation.json).

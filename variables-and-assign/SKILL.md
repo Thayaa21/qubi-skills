@@ -15,7 +15,7 @@ qubi's data-flow model is simple but has no dedicated owner elsewhere in the ski
 
 - A workflow needs a value available to more than one downstream node (a config value, an API key, a threshold)
 - The user describes passing data from one step to the next
-- `qcli flow validate` reports `UNKNOWN_DATA_FIELD` on an `Assign` node, or a downstream node's `{{variable}}` reference looks wrong
+- `qubi flow validate` reports `UNKNOWN_DATA_FIELD` on an `Assign` node, or a downstream node's `{{variable}}` reference looks wrong
 
 ## Node reference
 
@@ -58,7 +58,7 @@ See [fixtures/assign_then_use.json](fixtures/assign_then_use.json) for the minim
 ## Phase 4: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 A typo'd key inside `data` (e.g. `assignmnets` instead of `assignments`) produces `UNKNOWN_DATA_FIELD` -- see [fixtures/invalid/assign_typo_field.json](fixtures/invalid/assign_typo_field.json). The validator does **not** check that `{{variable}}` references inside strings actually correspond to a variable that was set somewhere upstream -- that's a design-time discipline, not something `flow validate` enforces.

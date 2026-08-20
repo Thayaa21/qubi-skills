@@ -14,7 +14,7 @@ description: "Run inline JavaScript or Python in a qubi Agentic Flow Code node. 
 ## When to invoke
 
 - The user's workflow needs a transformation, calculation, or logic step no other node type covers
-- `qcli flow validate` reports `INVALID_CODE_LANGUAGE`
+- `qubi flow validate` reports `INVALID_CODE_LANGUAGE`
 
 ## Node reference
 
@@ -48,7 +48,7 @@ See [fixtures/python_transform.json](fixtures/python_transform.json). Note the r
 ## Phase 3: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 A language that isn't `javascript`/`python` in any casing (e.g. `typescript`) fails with `INVALID_CODE_LANGUAGE` -- see [fixtures/invalid/invalid_code_language.json](fixtures/invalid/invalid_code_language.json). A non-string `language` value fails the same way rather than crashing.

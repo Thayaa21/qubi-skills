@@ -1,6 +1,6 @@
 ---
 name: branch-and-converge
-description: "Build correct conditional flows in qubi Agentic Flows -- Branch conditions, reconverging paths, and guaranteeing every path reaches End. Use when a workflow has an if/else, or when qcli flow validate reports UNREACHABLE_NODE or NO_PATH_TO_END."
+description: "Build correct conditional flows in qubi Agentic Flows -- Branch conditions, reconverging paths, and guaranteeing every path reaches End. Use when a workflow has an if/else, or when qubi flow validate reports UNREACHABLE_NODE or NO_PATH_TO_END."
 ---
 
 # Branch and Converge
@@ -13,14 +13,14 @@ description: "Build correct conditional flows in qubi Agentic Flows -- Branch co
 
 ## What it solves
 
-This is not a hypothetical risk. When the hardened qcli validator (which adds connectivity checking that the original validator lacked) was run over the 100-workflow evaluation corpus shipped with qcli-web, 95 workflows were perfectly clean and **5 were not** -- `complex/C06` through `complex/C10` each had a `Start` node with no outgoing edge, producing 136 `UNREACHABLE_NODE` and 5 `NO_PATH_TO_END` warnings between them. The original (unhardened) validator reported all 100 as clean. That gap is exactly what this skill is for.
+This is not a hypothetical risk. When the hardened qubi validator (which adds connectivity checking that the original validator lacked) was run over the 100-workflow evaluation corpus shipped with qcli-web, 95 workflows were perfectly clean and **5 were not** -- `complex/C06` through `complex/C10` each had a `Start` node with no outgoing edge, producing 136 `UNREACHABLE_NODE` and 5 `NO_PATH_TO_END` warnings between them. The original (unhardened) validator reported all 100 as clean. That gap is exactly what this skill is for.
 
 Also worth knowing: `Branch` never appears in any of the 50 "simple" workflows in that corpus (by definition -- simple means linear), so branch-shaped mistakes concentrate in medium/complex work, which is also where they're hardest to spot by eye.
 
 ## When to invoke
 
 - The user describes an if/else, a decision point, or "route based on X"
-- `qcli flow validate` reports `UNREACHABLE_NODE`, `NO_PATH_TO_END`, `DUPLICATE_START`, or `DUPLICATE_END`
+- `qubi flow validate` reports `UNREACHABLE_NODE`, `NO_PATH_TO_END`, `DUPLICATE_START`, or `DUPLICATE_END`
 - A downloaded or hand-written workflow has more than one `Branch` node
 
 ## Node reference
@@ -57,7 +57,7 @@ After generating a branching graph, don't just eyeball it -- walk each leg from 
 ## Phase 3: Validate and read connectivity warnings literally
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 | Code | Severity | Meaning | Fix |
@@ -67,13 +67,13 @@ qcli flow validate <file.json>
 | `DUPLICATE_START` | warning | More than one `Start` node | Keep exactly one; repoint or remove the rest |
 | `DUPLICATE_END` | warning | More than one `End` node, but not all are reachable | Either connect every `End`, or consolidate to one |
 
-**These are warnings, not errors** -- `qcli flow validate` still exits 0 and `qcli flow save` will still let you push a graph with dangling branches. Treat them as must-fix anyway: a workflow with an unreachable node renders as a disconnected island on the canvas and will never execute past the point of detachment.
+**These are warnings, not errors** -- `qubi flow validate` still exits 0 and `qubi flow save` will still let you push a graph with dangling branches. Treat them as must-fix anyway: a workflow with an unreachable node renders as a disconnected island on the canvas and will never execute past the point of detachment.
 
 ## Unverified
 
 | ID | Claim | Why unverifiable offline | How to verify | Status |
 |----|-------|---------------------------|----------------|--------|
-| UV-BRANCH-01 | The shape of `Branch.conditions` (e.g. `{"expression": ..., "targetNodeId": ...}`) | The field is optional, so the validator never inspects it -- captured real graphs show varying shapes | Configure a two-way branch in the designer and download the graph with `qcli flow get` | open |
+| UV-BRANCH-01 | The shape of `Branch.conditions` (e.g. `{"expression": ..., "targetNodeId": ...}`) | The field is optional, so the validator never inspects it -- captured real graphs show varying shapes | Configure a two-way branch in the designer and download the graph with `qubi flow get` | open |
 
 ## Operating Rules
 

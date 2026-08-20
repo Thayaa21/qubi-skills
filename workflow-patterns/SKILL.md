@@ -38,7 +38,7 @@ Several independent calls that don't depend on each other's results, converging 
 ## Phase: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 All four patterns validate to zero errors and zero warnings when built correctly -- if `UNREACHABLE_NODE` or `NO_PATH_TO_END` appears, an edge in the pattern is missing; see [branch-and-converge](../branch-and-converge/SKILL.md).

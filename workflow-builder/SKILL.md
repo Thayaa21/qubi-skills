@@ -5,7 +5,7 @@ description: "Generate, validate, and deploy qubi Agentic Flows (JSON graph form
 
 # qubi Agentic Flows Builder
 
-> Build valid qubi Agentic Flows from plain English, validate locally, and deploy to the qubi web platform via the qcli pipeline.
+> Build valid qubi Agentic Flows from plain English, validate locally, and deploy to the qubi web platform via the qubi pipeline.
 
 ## What this skill is
 
@@ -14,7 +14,7 @@ A workflow authoring skill that knows qubi's 13 Agentic Flow node types, their r
 ## What it solves
 
 - Knowing which node types exist and what fields each requires
-- Writing structurally valid workflow graphs that pass qcli validation
+- Writing structurally valid workflow graphs that pass qubi validation
 - Following the exact command sequence to save a workflow to qubi
 - Handling validation errors without human help
 
@@ -22,7 +22,7 @@ A workflow authoring skill that knows qubi's 13 Agentic Flow node types, their r
 
 - User asks to build, create, or generate a qubi Agentic Flow
 - User asks to write a workflow graph for qubi's web platform
-- User asks to validate or deploy a flow with qcli
+- User asks to validate or deploy a flow with qubi
 - User mentions qubi, agentic flows, or AgentHub in a web/JSON context
 
 ## Reference files
@@ -34,37 +34,37 @@ don't try to hold all of it in context up front.
 |------|-------------|
 | [schema-reference.md](./schema-reference.md) | You need the full field list for a node type, including which fields are select-from-dropdown vs free text |
 | [examples.md](./examples.md) | You want a complete, validated graph to start from or compare against |
-| [error-handling.md](./error-handling.md) | `qcli flow validate` reported an error or warning code and you need the fix |
+| [error-handling.md](./error-handling.md) | `qubi flow validate` reported an error or warning code and you need the fix |
 
 ## Phase 0: Get the Real Starting Point
 
 Prefer editing an existing workflow over authoring one from scratch:
 
 ```bash
-qcli flow list
-qcli flow get <workflow-id> -o base.json --pretty
+qubi flow list
+qubi flow get <workflow-id> -o base.json --pretty
 ```
 
 The downloaded graph already carries designer-only fields (`measured`, `selected`)
 that a hand-authored graph won't have. Editing it in place avoids having to guess
 whether those fields matter for a given save. If there is no existing workflow to
 extend, a human must create one in the qubi web UI first and give you its ID —
-`qcli flow save` writes into an existing workflow, there is no `flow create`.
+`qubi flow save` writes into an existing workflow, there is no `flow create`.
 
 If any networked command (`flow list`, `flow get`, `agents list`, `rpa list`,
 `flow save`, `flow run`) fails with a 401/auth error, do not retry it blindly.
-Tell the human and suggest the default `qcli login`, which opens a real browser
+Tell the human and suggest the default `qubi login`, which opens a real browser
 window for them to log in and harvests the session cookies afterward. The
-`qcli login --no-browser` path is known to capture Identity Server cookies
+`qubi login --no-browser` path is known to capture Identity Server cookies
 rather than AgentHub cookies and will not authenticate networked calls; if the
-default login itself seems stuck, use `qcli login --headed` to watch it happen.
+default login itself seems stuck, use `qubi login --headed` to watch it happen.
 
 ## Phase 1: Understand the Request
 
 Determine:
 - What the workflow does (call API, run AI agent, parse data, execute RPA, etc.)
 - Which node types are needed
-- Whether agent IDs or RPA automation IDs are needed (if yes, use `qcli agents list` or `qcli rpa list` and ask the human to pick)
+- Whether agent IDs or RPA automation IDs are needed (if yes, use `qubi agents list` or `qubi rpa list` and ask the human to pick)
 
 ## Phase 2: Write the Graph JSON
 
@@ -133,7 +133,7 @@ including which fields are dropdown-selects on the platform (e.g. `taskType`,
 - Node IDs must be UUID-shaped, all unique. This applies to *node* ids only —
   `agentId`, `automationId`, and `workflowId` are opaque platform identifiers
   (some are non-RFC-4122 .NET sequential GUIDs) that you discover via
-  `qcli agents list` / `qcli rpa list` / `qcli flow list`, never generate
+  `qubi agents list` / `qubi rpa list` / `qubi flow list`, never generate
 - `data.type` must match the node's `type` field
 - Every `data` key must be one of that type's required/optional fields (plus
   `type` and `description`) — an unrecognised key is very likely a typo
@@ -147,12 +147,12 @@ including which fields are dropdown-selects on the platform (e.g. `taskType`,
 ## Phase 3: Validate
 
 ```bash
-qcli flow validate <file.json>
+qubi flow validate <file.json>
 ```
 
 For machine-parseable output:
 ```bash
-qcli flow validate <file.json> --json-output
+qubi flow validate <file.json> --json-output
 ```
 
 ## Phase 4: Fix Errors
@@ -201,12 +201,12 @@ Re-validate after fixing. Repeat until there are zero errors and zero warnings.
 
 For Agent nodes — get the agentId:
 ```bash
-qcli agents list
+qubi agents list
 ```
 
 For RPA nodes — get the automationId:
 ```bash
-qcli rpa list
+qubi rpa list
 ```
 
 Ask the human to pick if there are multiple options.
@@ -218,7 +218,7 @@ Ask the human to pick if there are multiple options.
 "Ready to save this workflow to qubi?"
 
 ```bash
-qcli flow save <file.json> --workflow-id <id>
+qubi flow save <file.json> --workflow-id <id>
 ```
 
 The workflow must already exist on the platform. The human provides the workflow ID (visible in the URL: `/workflows/{id}/designer`).
@@ -230,7 +230,7 @@ The workflow must already exist on the platform. The human provides the workflow
 "Ready to run this workflow?"
 
 ```bash
-qcli flow run <workflow-id>
+qubi flow run <workflow-id>
 ```
 
 ## Output
@@ -253,7 +253,7 @@ qcli flow run <workflow-id>
 - Ask the human to pick agent/automation IDs from `agents list` / `rpa list`
 - Use exact type casing: `Http`, `Hitl`, `RPA`, `DocumentAI`, `HitlTask`, `JsonParser`, `TextParser`
 - If a networked command fails on auth, tell the human and suggest the default
-  `qcli login` (browser-based) rather than retrying silently; use `qcli login --headed` to debug a stuck login
+  `qubi login` (browser-based) rather than retrying silently; use `qubi login --headed` to debug a stuck login
 
 **Never:**
 - Invent node types not in the schema
