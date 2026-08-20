@@ -9,18 +9,34 @@ that need one of these values use a documented sentinel
 (`00000000-0000-0000-0000-000000000000` for ids, `UNVERIFIED` for enums) rather
 than a plausible-looking fake, so `grep` finds every open row.
 
+## Unblocked by: `qcli agents list` returning rows
+
+- `UV-AGENT-01` (agent-nodes/SKILL.md) The example `agentId` in [workflow-builder/examples.md](../workflow-builder/examples.md) is real -- open
+
 ## Unblocked by: any authenticated session
 
-- `UV-RUNTIME-01` (repo-wide) {{variable}} interpolation semantics at runtime -- open
+- `UV-RUNTIME-01` (variables-and-assign/SKILL.md) `{{variable}}` interpolation semantics at runtime (missing variable, nested objects, type coercion) -- open
 
 ## Unblocked by: manual investigation
 
-- `UV-ASSIGN-01` (repo-wide) The shape of Assign.assignments -- open
-- `UV-BRANCH-01` (repo-wide) The shape of Branch.conditions -- open
+- `UV-ASSIGN-01` (variables-and-assign/SKILL.md) The exact shape of `Assign.assignments` entries -- open
+- `UV-BRANCH-01` (branch-and-converge/SKILL.md) The shape of `Branch.conditions` (e.g. `{"expression": ..., "targetNodeId": ...}`) -- open
 - `UV-ENVELOPE-01` (repo-wide) Whether executionMode accepts any value besides Sequential -- open
-- `UV-HITL-01` (repo-wide) Whether a Hitl node contains or merely precedes HitlTask nodes -- open
-- `UV-JSONPARSER-01` (repo-wide) The shape of JsonParser.mappings -- open
-- `UV-TEXTPARSER-01` (repo-wide) The shape of TextParser.outputMappings -- open
+- `UV-HITL-01` (hitl-workflows/SKILL.md) Whether a `Hitl` node contains or merely precedes `HitlTask` nodes -- open
+- `UV-JSONPARSER-01` (json-parser-nodes/SKILL.md) Whether `jsonPath` supports the full JSONPath spec (filters, wildcards) or only simple dotted/indexed paths -- open
+- `UV-PATTERN-01` (workflow-patterns/SKILL.md) Whether fan-out branches (multiple edges out of one node) execute concurrently or sequentially -- open
+- `UV-RPA-01` (rpa-automation/SKILL.md) Whether `qcli rpa list` output includes enough detail to disambiguate automations with similar names -- open
+- `UV-TEXTPARSER-01` (text-parser-nodes/SKILL.md) The exact shape of `outputMappings` entries beyond `group`/`variable` -- open
+
+## Unblocked by: one look at the DocumentAI node in the designer
+
+- `UV-DOCAI-01` (document-ai-nodes/SKILL.md) `operation` accepts a value like `extract`, `ocr`, or `classify` -- open
+
+## Unblocked by: one look at the HitlTask node in the designer
+
+- `UV-HITLTASK-01` (hitl-workflows/SKILL.md) `taskType` accepts values like `approval` -- open
+- `UV-HITLTASK-02` (hitl-workflows/SKILL.md) `assignTo` accepts a user id, a group id, or both -- open
+- `UV-MYAREA-01` (qubi-skill-authoring/SKILL.md) `taskType` accepts a value like `approval` -- open
 
 ## Unblocked by: one successful `qcli flow run`
 

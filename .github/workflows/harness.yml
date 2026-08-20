@@ -39,3 +39,7 @@ jobs:
       - name: Check UNVERIFIED.md is current
         working-directory: qubi-skills
         run: python tools/rollup_unverified.py --check
+
+      - name: Check README.md skills table is current
+        working-directory: qubi-skills
+        run: python tools/render_readme_table.py --check
